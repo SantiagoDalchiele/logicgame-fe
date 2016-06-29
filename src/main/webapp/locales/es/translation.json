@@ -1,0 +1,61 @@
+{
+  "ui": {
+  	"botonAceptar": "Aceptar",
+  	"botonCancelar": "Cancelar",
+  	"mensajeFinalizacion": "Felicitaciones, has superado este nivel!",
+  	"mensajeReiniciar": "¿Deseas volver a comenzar este nivel?",
+  	"mensajeExitoGrabar": "Juego persistido de forma correcta",
+  	"login": {
+  			"usuario": "Usuario (e-mail)",
+  			"clave": "Clave",
+  			"boton": "Iniciar sesión",
+  			"botonFacebook": "Iniciar sesión usando facebook",
+  			"botonResetClave": "No recuerdo mi clave",
+  			"botonRegistro": "Registrarme",
+  			"errorUsuarioNulo": "Ingrese usuario o e-mail",
+  			"errorUsuarioIncorrecto": "Usuario o e-mail incorrecto",
+  			"errorClaveNula": "Ingrese su clave",
+  			"errorUsuarioInexistente": "No existe un usuario con ese identificador o correo",
+  			"errorClaveIncorrecta": "Usuario/clave incorrecta"
+  		},
+  	"registro": {
+  			"usuario": "Usuario",
+  			"correo": "Correo",
+  			"clave": "Clave",
+  			"confirma": "Confirma clave",
+  			"botonRegistro": "Registrarme",
+  			"errorUsuarioNulo":	"Ingrese usuario",
+  			"errorUsuarioIncorrecto": "El identificador de usuario ingresado es incorrecto",
+  			"errorCorreoInvalido": "Ingrese una dirección de correo válida",
+  			"errorClaveCorta": "Ingrese una clave de 5 o más caracteres",
+  			"errorIncorrecta": "La clave ingresada debe contener solo caracteres alfanúmericos o los caracteres especiales .-_",
+  			"errorConfirmacionClave": "Error en el ingreso de la confirmación de la clave",
+  			"errorUsuarioExistente": "Ya existe un usuario registrado con este identificador",
+  			"errorCorreoExistente": "Ya existe un usuario registrado con este correo"
+  		},
+  	"titulosDialogos": {
+  			"error": "Error",
+  			"confirmacion": "Confirmación",
+  			"finalizacion": "Nivel superado",
+  			"descripcionJuego": "Descripción del problema",
+  			"configuracion": "Configuración"  			
+  		},
+  	"tooltips": {
+  			"botonRanking": "Oculta/Muestra el nivel donde se encuentran los principales jugadores",
+  			"botonHistoria": "Despliega el texto descriptivo de la historia de este nivel del juego",
+  			"botonFinalizar": "Oprime aquí si consideras que resolviste el juego!",
+  			"botonPrevio": "Muestra la pista anterior",
+  			"botonSiguiente": "Muestra la siguiente pista",
+  			"botonGrabar": "Guarda el estado actual del juego",
+  			"botonDeshacer": "Deshace la última marca realizada",
+  			"botonRehacer": "Vuelve a realizar la última marca deshecha",
+  			"botonConfigurar": "Configuración del juego",
+  			"botonReiniciar": "Vuelve a comenzar este nivel",
+  			"botonCerrarSession": "Cierra la sesión abierta"
+  		}
+  },
+  "juego": {
+  	"incompleto": "Juego incompleto",
+  	"incorrecto": "Solución incorrecta"
+  }    
+}

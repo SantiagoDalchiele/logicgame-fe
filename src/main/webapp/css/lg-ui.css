@@ -1,0 +1,177 @@
+.main {
+	margin: 0 auto;
+}
+
+.ui-dialog-titlebar {
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	font-size: 14px;
+	font-weight: bold;	
+}
+
+.noselect {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.noresize {
+    resize: none;
+}
+
+.lgui-icono {
+	width: 32px;
+	height: 32px;
+}
+
+.tabla100 {
+	width: 100%;
+}
+
+
+#lg_user, #lg_password, #lg_reg_user, #lg_reg_correo, #lg_reg_password, #lg_reg_password2 {
+	width: 100%;
+	padding: .5em;
+	font-size: 1em;
+	margin: 5px 0;
+}
+
+#lg_user:focus, #lg_password:focus, #lg_reg_user:focus, #lg_reg_correo:focus, #lg_reg_password:focus, #lg_reg_password2:focus {
+	background-color: #fffee1;
+}
+
+#lg_btt_login, #lg_btt_cancel_registro, #lg_btt_registro {
+	font-size: 1.2em;
+	color: #FFF;
+	background-color: #dd4817;
+	margin: 10px 0;
+	border: 0;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	padding: .5em 1em;
+	cursor: hand;
+}
+
+#lg_btt_login:hover, #lg_btt_cancel_registro:hover, #lg_btt_registro:hover {
+	background-color: #1072cf;
+}
+
+#lg_btt_facebook {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-weight: bold;
+	color: #fff;
+	background-color: #3b5998;
+	margin: 25px 0;
+	border: 0;
+	border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	padding: .5em 1em;
+}
+
+#lg_btt_resetClave, #lg_btt_registrarse {
+	font-weight: bold;
+	color: black;
+	background-color: #fff;
+	border: 0;
+}
+
+#lg_btt_resetClave:hover, #lg_btt_registrarse:hover {
+	color: #dd4817;
+}
+
+
+#dialogoError {
+	background-color: #fde9f1;
+	font-family: "Arial";
+	font-size: 14px;
+	font-weight: bold;
+	display: none;	
+}
+#error_msg {
+	color: #bf2026;
+	text-align: left;
+}
+#error_detalle_texto {
+	color: #bf2026;
+	font-family: "Arial";
+	font-size: 14px;
+	margin: 10px;
+	min-width: 90%;
+}
+
+
+#dialogoFinalizacion {
+	background-color: #fcfcfc;
+	color: black;
+	font-family: "Arial";
+	font-size: 14px;
+	font-weight: bold;
+	display: none;
+}
+
+#panel_login, #panel_registro, #panel_ui_juego, #dialogoConfiguracion {
+	display: none;
+}
+
+#tabla_ranking {
+	color: #1072cf;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+#panelBarraTareas {
+	margin: 10px;	
+}
+
+#panelEspera {
+	opacity: 0.9;
+	z-index: 1;   
+	position: absolute;
+	top: 20px;
+	display: none;
+}
+
+/** --------------------------------------------------------------------- */
+
+#panel_ui_juego {
+	display: table;
+} 
+
+#rankingDiv, #juegoDiv, #barraTareasDiv {
+	display: table-cell;
+}
+
+#rankingDiv, #barraTareasDiv {
+	vertical-align: bottom; 
+	background: #fcfcfc; 
+}
+
+#rankingDiv {
+	margin: 2px;
+}
+
+.celdaBarraTareas {
+	padding: 4px;
+}
+
+@media screen and (max-width: 768px) {
+	#panel_ui_juego {
+		display: table;
+	}
+	
+	#juegoDiv {
+		display: table-header-group;		
+	}
+	
+	#rankingDiv {
+		display: table-footer-group;
+	}
+	
+	.celdaBarraTareas {
+		float: left;
+	}
+}

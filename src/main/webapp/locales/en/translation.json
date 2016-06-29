@@ -1,0 +1,61 @@
+{
+  "ui": {
+  	"botonAceptar": "Ok",
+  	"botonCancelar": "Cancel",
+  	"mensajeFinalizacion": "Congratulations, level is complete!",
+  	"mensajeReiniciar": "Do you want to start again this level?",
+  	"mensajeExitoGrabar": "Game saved OK",
+  	"login": {
+  			"usuario": "User (e-mail)",
+  			"clave": "Password",
+  			"boton": "Login",
+  			"botonFacebook": "Login with facebook",
+  			"botonResetClave": "Forgot my password",
+  			"botonRegistro": "Register",
+  			"errorUsuarioNulo": "Invalid user or e-mail",
+  			"errorUsuarioIncorrecto": "Invalid user or e-mail",
+  			"errorClaveNula": "Invalid password",
+  			"errorUsuarioInexistente": "No user with that id or e-mail",
+  			"errorClaveIncorrecta": "Invalid user/password"
+  		},
+  	"registro": {
+  			"usuario": "User",
+  			"correo": "E-mail",
+  			"clave": "Password",
+  			"confirma": "Confirm password",
+  			"botonRegistro": "Register",
+  			"errorUsuarioNulo":	"Invalid user",
+  			"errorUsuarioIncorrecto": "Invalid user id",
+  			"errorCorreoInvalido": "Invalid e-mail",
+  			"errorClaveCorta": "Password must be at least 5 characters lenght",
+  			"errorClaveIncorrecta": "Password must contain only alphanumeric characters or special characters .-_",
+  			"errorConfirmacionClave": "Wrong confirmation password",
+  			"errorUsuarioExistente": "User already registered with this id",
+  			"errorCorreoExistente": "User already registered with this e-mail"
+  		},
+  	"titulosDialogos": {
+  			"error": "Error",
+  			"confirmacion": "Confirmation",
+  			"finalizacion": "Level completed",
+  			"descripcionJuego": "Problem description",
+  			"configuracion": "Settings"
+  		},
+  	"tooltips": {
+  			"botonRanking": "Hide/show main players ranking",
+  			"botonHistoria": "Displays history describing this level of the game",
+  			"botonFinalizar": "Press here if you consider that you solved the game!",
+  			"botonPrevio": "Shows the previous tip",
+  			"botonSiguiente": "Shows the next tip",
+  			"botonGrabar": "Saves the current state of the game",
+  			"botonDeshacer": "Undo the last mark made",
+  			"botonRehacer": "Restarts the last mark undone",
+  			"botonConfigurar": "Game settings",
+  			"botonReiniciar": "Restart this level",
+  			"botonCerrarSession": "Close session"
+  		}
+  },
+  "juego": {
+  	"incompleto": "Incomplete game",
+  	"incorrecto": "Wrong solution"
+  }
+}

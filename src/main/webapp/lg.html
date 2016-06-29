@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>LogicGame</title>
+
+<!-- <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/redmond/jquery-ui.min.css" /> -->  
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" />
+<!-- <link rel="stylesheet" type="text/css" href="css/lg.min.css">  -->
+<link rel="stylesheet" type="text/css" href="css/lg-juego.css">
+<link rel="stylesheet" type="text/css" href="css/lg-ui.css">
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>  -->  
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+
+<script src="js/i18next-1.11.0.min.js"></script>
+<script src="js/UtilLG.js"></script>
+
+<!-- <script src="js/lg.min.js"></script>  -->
+<script src="js/UILG-core.js"></script>
+<script src="js/UILG-dialogos.js"></script>
+<script src="js/UILG-ajax.js"></script>
+<script src="js/UILG-configuracion.js"></script>
+<script src="js/UILG-login.js"></script>
+<script src="js/UILG-registro.js"></script>
+<script src="js/UILG-juego.js"></script>
+<script src="js/UILG-pista.js"></script>
+<script src="js/UILG-main.js"></script>
+   
+</head>
+
+
+<body>
+
+<!-- Login y registro -->
+<table class="main"><tr><td class="noselect">
+	<table id="panel_login">
+		<tr><td><input id="lg_user" autofocus="autofocus" required="required" onkeypress="UtilLG.defaultButton(event, 'lg_btt_login')" 
+						pattern="([a-zA-Z0-9]{1,1}[_a-zA-Z0-9- \.]{0,63})|(\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+)"/></td></tr>
+		<tr><td><input id="lg_password" type="password" required="required" onkeypress="UtilLG.defaultButton(event, 'lg_btt_login')" pattern="[_a-zA-Z0-9-\.]{5,32}"/></td></tr>
+		<tr><td><input type="button" id="lg_btt_login" onclick="MainLG.doLogin()"/></td></tr>
+		<tr><td style="text-align: center"><input type="button" id="lg_btt_facebook" onclick="MainLG.doLoginWithFacebook()"/></td></tr>
+		<tr><td><table class="tabla100"><tr>
+					<td><input type="button" id="lg_btt_resetClave" onclick="MainLG.resetClave()"/></td>
+					<td style="text-align: right"><input type="button" id="lg_btt_registrarse" onclick="MainLG.registrarse()"/></td>
+		</tr></table></td></tr>
+	</table>
+	<table id="panel_registro">
+		<tr><td><input id="lg_reg_user" autofocus="autofocus" required="required" onkeypress="UtilLG.defaultButton(event, 'lg_btt_registro')" pattern="[a-zA-Z0-9]{1,1}[_a-zA-Z0-9- \.]{0,63}"/></td></tr>
+		<tr><td><input id="lg_reg_correo"                    required="required" onkeypress="UtilLG.defaultButton(event, 'lg_btt_registro')" pattern="\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+"/></td></tr>
+		<tr><td><input id="lg_reg_password" type="password" required="required" onkeypress="UtilLG.defaultButton(event, 'lg_btt_registro')" pattern="[_a-zA-Z0-9-\.]{5,32}"/></td></tr>
+		<tr><td><input id="lg_reg_password2" type="password" required="required" onkeypress="UtilLG.defaultButton(event, 'lg_btt_registro')" pattern="[_a-zA-Z0-9-\.]{5,32}"/></td></tr>
+		<tr><td><table class="tabla100"><tr>
+					<td><input type="button" id="lg_btt_cancel_registro" onclick="MainLG.cancelRegistro()"/></td>
+					<td><div style="width: 40px"></div></td>
+					<td style="text-align: right"><input type="button" id="lg_btt_registro" onclick="MainLG.doRegistro()"/></td>
+		</tr></table></td></tr>
+	</table>
+</td></tr></table>
+
+
+<!-- Tabla con el ranking el juego y la barra de tareas -->
+<table class="main">	
+	<tr><td class="noselect">
+		<div id="panel_ui_juego">
+		
+			<!-- Ranking -->
+			<!-- <td style="vertical-align:bottom; background:#fcfcfc; margin:2px;">  -->
+			<div id="rankingDiv">					
+				<div id="ranking_panel"><table id="tabla_ranking"></table></div>
+				<div style="height:30px"></div>
+				<img id="ranking_button" src="img/onoff.png" class="lgui-icono" onclick="MainLG.toggleRanking()"/>
+			<!-- </td> -->
+			</div>
+			
+			<!-- Juego en si -->
+			<!--  <td>  -->
+			<div id="juegoDiv">
+				<table class="juego-tabla juego-tabla-con-imagen juego-fuente-defecto">
+					<tr><td><div id="nivel_juego"></div></td><td colspan=2 style="text-align:center"><div id="titulo_juego"></div></td></tr>
+					<tr><td colspan=3><table class="juego-tabla" id="tabla_juego"></table></td>	</tr>
+					<tr>
+						<td width="32px"><img id="previo" onclick="MainLG.pistaAnterior()"></td>
+						<td align="center"><textarea id="pista" readonly class="juego-pista noresize noselect juego-fuente-defecto"></textarea></td>
+						<td width="32px"><img id="siguiente" onclick="MainLG.pistaSiguiente()"></td>
+					</tr>
+				</table>					
+			<!-- </td>  -->
+			</div>
+			
+			<!-- Barra de tareas -->
+			<div id="barraTareasDiv">
+				<div id="panelBarraTareas">  
+					<div class="celdaBarraTareas"><img id="deshacer_btt" src="img/erase.png" class="lgui-icono" onclick="MainLG.deshacer()"/></div>
+					<div class="celdaBarraTareas"><img id="rehacer_btt" src="img/redo.png" class="lgui-icono" onclick="MainLG.rehacer()"/></div>
+					<div class="celdaBarraTareas"><img id="grabar_btt" src="img/floppy-disk.png" class="lgui-icono" onclick="MainLG.grabar()"/></div>
+					<div class="celdaBarraTareas"><img id="configurar_btt" src="img/conf.png" class="lgui-icono" onclick="MainLG.configurar()"/></div>
+					<div class="celdaBarraTareas"><img id="reiniciar_btt" src="img/exit.png" class="lgui-icono" onclick="MainLG.reiniciar()"/></div>
+					<div class="celdaBarraTareas"><img id="cerrarSession_btt" src="img/logout.png" class="lgui-icono" onclick="MainLG.cerrarSession()"/></div>
+				</div>
+			</div>
+			
+		</div>					
+	</td></tr>
+</table>
+
+
+<!-- Panel de espera -->
+<div id="panelEspera"><img src="img/loader.gif"></div>
+
+<!-- Dialogo de basico -->
+<div id="dialogoBasico"><p id="texto_dialogoBasico" class="noselect juego-fuente-defecto"></p></div>
+
+<!-- Dialogo de Error -->
+<div id="dialogoError">
+  	<table><tr><td><img src="img/error.png" class="lgui-icono"/></td><td><p id="error_msg"></p></td></tr></table>
+	<div id="error_detalle"><p id="error_detalle_texto"></p></div>
+</div>
+
+<!-- Dialogo de finalizacion -->
+<div id="dialogoFinalizacion">
+	<table class="tabla100"><tr>
+		<td><img src="img/checkered_flag_icon.jpg" class="lgui-icono"/></td>
+		<td width="80%"><span id="finalizacion_msg"></span></td>
+	</tr></table>
+</div>
+
+<!-- Dialogo de configuración -->
+<div id="dialogoConfiguracion" class="juego-fuente-defecto">
+	<table id="conf_idiomas"></table>
+</div>
+
+</body>
+</html>

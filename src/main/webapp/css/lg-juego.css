@@ -1,0 +1,73 @@
+.juego-fuente-defecto {
+	color: #1072cf;
+	/* color: #3b5998;  // Color de facebook */
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	font-size: 14px;
+	font-weight: bold;		
+}
+.juego-vertical {
+	writing-mode: vertical-lr;
+    -ms-writing-mode: tb-lr;
+    -webkit-writing-mode: vertical-lr;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+    width: 25px;
+    align: center;	
+	textAlign: center;
+}
+#titulo_juego {
+	background: transparent;
+	margin: 7px;
+	font-size: 16px;
+}
+.juego-tit-sup {
+	background: transparent;
+}
+.juego-celda {
+    border: 1px solid black;
+	border-collapse: collapse;
+}
+.juego-celda-sup {
+	valign: bottom;
+	verticalAlign: bottom;
+	align: center;	
+	textAlign: center;
+}
+.juego-celda-lateral, .juego-celda-nula {
+	valign: center;
+	verticalAlign: center;
+	align: center;	
+	textAlign: center;
+}
+.juego-celda-sel {
+	height: 32px;
+	width: 32px;
+}
+.juego-tabla, .juego-celda-nula {
+	border: none;
+	border-collapse: collapse;
+}
+.juego-tabla-con-imagen {
+	background-image: url("../img/Geniol maquinita3.jpg");
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-color: #fcfcfc;
+	min-width: 400px;
+	margin: auto;
+}
+.juego-pista {	
+	align: center;
+	valign: center;
+	background: #fcfcfc;
+	border: none;
+	min-width: 99%;	
+	font-size: 16px;
+	font-weight: bold;
+}
+.juego-icono-grande {
+	width: 48px;
+	height: 48px;
+}
