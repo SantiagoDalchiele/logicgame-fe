@@ -79,12 +79,12 @@ public class AdmUploadServlet extends DBAccessServlet implements ILogicGameWebCo
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    response.setContentType("text/html;charset=UTF-8");
 	    final Part filePart = request.getPart(PARAM_FILE);
-	    final String extArch = UtilIO.extFile(getFileName(filePart));
+	    final String fileName = getFileName(filePart);
+	    final String extArch = UtilIO.extFile(fileName);
 	    final PrintWriter writer = response.getWriter();
 	    final String idioma = request.getParameter(PARAM_IDIOMA);
 	    boolean dbIniciada = false;
-	    log.debug("Idioma=" + idioma + ", Extension=" + extArch);
-	    
+	    log.debug("Idioma=" + idioma + ", Extension=" + extArch + ", Archivo=" + fileName);	    
 
 	    try {
 	    	if (request.getSession().getAttribute(ID_ATT_CLAVE_ADM) == null)
