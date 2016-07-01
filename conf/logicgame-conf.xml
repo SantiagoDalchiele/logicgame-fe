@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<configuracion xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <costo-inicial-por-absurdo>30</costo-inicial-por-absurdo>
+  <estrategias>
+    <estrategia>
+      <descripcion>Negación por descarte</descripcion>
+      <clase>uy.com.uma.logicgame.resolucion.estrategias.NegacionXDescarte</clase>
+      <orden>2</orden>
+      <costo>0</costo>
+    </estrategia>
+    <estrategia>
+      <descripcion>Afirmación por descarte</descripcion>
+      <clase>uy.com.uma.logicgame.resolucion.estrategias.AfirmacionXDescarte</clase>
+      <orden>3</orden>
+      <costo>0</costo>
+    </estrategia>
+    <estrategia>
+      <descripcion>Deducción por 1° cuadro vertical</descripcion>
+      <clase>uy.com.uma.logicgame.resolucion.estrategias.DeduccionX1CuadroV</clase>
+      <orden>4</orden>
+      <costo>4</costo>
+    </estrategia>
+    <estrategia>
+      <descripcion>Deducción por 1° cuadro horizontal</descripcion>
+      <clase>uy.com.uma.logicgame.resolucion.estrategias.DeduccionX1CuadroH</clase>
+      <orden>5</orden>
+      <costo>4</costo>
+    </estrategia>
+    <estrategia>
+      <descripcion>Deducciones transitivas para llenar el 1° cuadro</descripcion>
+      <clase>uy.com.uma.logicgame.resolucion.estrategias.Deduccion1Cuadro</clase>
+      <orden>6</orden>
+      <costo>6</costo>
+    </estrategia>
+    <estrategia>
+      <descripcion>Deducciones transitivas para llenar los cuadros centrales</descripcion>
+      <clase>uy.com.uma.logicgame.resolucion.estrategias.DeduccionCuadrosCentrales</clase>
+      <orden>7</orden>
+      <costo>6</costo>
+    </estrategia>  
+    <estrategia>
+      <descripcion>Infiere tansitividades del estilo que si (dimK x dim2) ^ (dimH !x dim2) => (dimK !x dimH)</descripcion>
+      <clase>uy.com.uma.logicgame.resolucion.estrategias.NegacionXCuadrosV</clase>
+      <orden>8</orden>
+      <costo>5</costo>
+    </estrategia>
+    <estrategia>
+      <descripcion>Infiere tansitividades del estilo que si (dimK x dim1) ^ (dimH !x dim1) => (dimK !x dimH)</descripcion>
+      <clase>uy.com.uma.logicgame.resolucion.estrategias.NegacionXCuadrosH</clase>
+      <orden>9</orden>
+      <costo>5</costo>
+    </estrategia>          
+    <estrategia>
+      <descripcion>Deducciones transitivas por cuadros centrales</descripcion>
+      <clase>uy.com.uma.logicgame.resolucion.estrategias.DeduccionXCuadrosCentrales</clase>
+      <orden>10</orden>
+      <costo>10</costo>
+    </estrategia>
+    <estrategia>
+      <descripcion>Descarta por transitivas en cuadros centrales (A x B) ^ (C !x A) => (C !x B)</descripcion>
+      <clase>uy.com.uma.logicgame.resolucion.estrategias.NegacionXCuadrosCentrales</clase>
+      <orden>11</orden>
+      <costo>10</costo>
+    </estrategia>
+  </estrategias>
+  <manejadores>
+  	<estructura>uy.com.uma.logicgame.persistencia.ManejadorEstructura</estructura>
+  	<sesiones>uy.com.uma.logicgame.persistencia.ManejadorSesiones1Capa</sesiones>
+  	<adm-internacionalizacion>uy.com.uma.logicgame.persistencia.inter.ManejadorAdminInternacionalizacion</adm-internacionalizacion>
+  	<internacionalizacion>uy.com.uma.logicgame.persistencia.inter.ManejadorInternacionalizacion</internacionalizacion>
+  	<juego>uy.com.uma.logicgame.persistencia.juego.ManejadorJuego</juego>
+  	<juego-web>uy.com.uma.logicgame.persistencia.juego.ManejadorJuegoWeb</juego-web>
+  	<seguridad>uy.com.uma.logicgame.persistencia.seguridad.ManejadorSeguridad</seguridad>
+  	<configuracion>uy.com.uma.logicgame.persistencia.ManejadorConfiguracion</configuracion>
+  	<cargador-recursos>uy.com.uma.logicgame.persistencia.CargadorRecursos</cargador-recursos>
+  </manejadores>
+  <ruta-defecto>1</ruta-defecto>
+  <security-salt>h0WJVmKmVOnOi4J4QenixH7FIf2dW0TiQja4UpcxDgU=</security-salt>
+  <clave-rol-adm>md54b42ae7558548a3743da7bd729dffe56</clave-rol-adm> <!-- logicgame -->
+  <clave-rol-web>md52857636bdbdf5b6dbee3da682c4e2b78</clave-rol-web> <!-- logicgame -->
+</configuracion>

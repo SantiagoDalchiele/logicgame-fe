@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- PostgreSQL connection -->
+		<!-- 	<property name="connection.url">jdbc:postgresql://localhost:5432/maven-lg</property>
+		<property name="connection.username">lg</property>
+		<property name="connection.password">logicgame</property>
+		<property name="connection.driver_class">org.postgresql.Driver</property>  -->
+		
+		<property name="hibernate.hbm2ddl.auto">validate</property>
+		<property name="show_sql">true</property>		
+		
+		<mapping class="uy.com.uma.logicgame.persistencia.inter.Idioma" />		
+		<mapping class="uy.com.uma.logicgame.persistencia.inter.Literal" />
+		<mapping class="uy.com.uma.logicgame.persistencia.juego.Dimension" />
+		<mapping class="uy.com.uma.logicgame.persistencia.juego.Juego" />
+		<mapping class="uy.com.uma.logicgame.persistencia.juego.JuegoXIdioma" />
+		<mapping class="uy.com.uma.logicgame.persistencia.juego.Pista" />
+		<mapping class="uy.com.uma.logicgame.persistencia.juego.PistaJuego" />
+		<mapping class="uy.com.uma.logicgame.persistencia.juego.Valor" />
+		<mapping class="uy.com.uma.logicgame.persistencia.seguridad.Ruta" />
+		<mapping class="uy.com.uma.logicgame.persistencia.seguridad.Usuario" />
+	</session-factory>
+</hibernate-configuration>
