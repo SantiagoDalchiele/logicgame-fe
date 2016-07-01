@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>uy.com.uma</groupId>
 	<artifactId>logicgame-fe</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
 	<name>LogicGame front-end</name>
 	<description>LogicGame capa de front-end (juegos de lógica)</description>
@@ -11,8 +11,14 @@
 		<tomcat.version>8.0.28</tomcat.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
    		<maven.compiler.target>1.8</maven.compiler.target>
-   		<develop.dir>c:/santiago/git</develop.dir>
 	</properties>
+	<repositories>
+		<repository>
+		    <id>project.local</id>
+        	<name>project</name>
+        	<url>file:./repo</url>
+		</repository>
+	</repositories>
 	<dependencies>
 		<dependency>
 	    	<groupId>uy.com.uma</groupId>
@@ -23,7 +29,7 @@
 			<groupId>uy.com.uma</groupId>
 			<artifactId>logicgame</artifactId>
 			<version>0.0.1</version>
-		</dependency>
+		</dependency>		
 	  	<dependency>
 	    	<groupId>org.apache.logging.log4j</groupId>
 	    	<artifactId>log4j-api</artifactId>
@@ -96,8 +102,13 @@
 	    </dependency>
 	</dependencies>
 	<build>
-		<finalName>logicgame-fe</finalName>
+		<finalName>logicgame-fe</finalName>		
 		<plugins>
+      		<plugin>
+        		<groupId>com.heroku.sdk</groupId>
+        		<artifactId>heroku-maven-plugin</artifactId>
+        		<version>1.0.3</version>
+      		</plugin>
 			<plugin>
 	            <groupId>org.codehaus.mojo</groupId>
 	            <artifactId>appassembler-maven-plugin</artifactId>
