@@ -117,9 +117,10 @@ public class AdmUploadServlet extends DBAccessServlet implements ILogicGameWebCo
 			    	}
 	    	}
 	    } catch (Exception e) {
-	        writer.println("Error general de la aplicación");
+	        writer.println("Error general de la aplicacion");
 	        writer.println("<br/> ERROR: " + e.getMessage());
 	        log.fatal("Problems during file upload. Error: {0}", e);
+	        e.printStackTrace();
 	    } finally {
 	    	UtilIO.closeWriter(writer);
 	    	
