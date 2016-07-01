@@ -13,7 +13,7 @@
 		<Console name="Console" target="SYSTEM_OUT">
       		<PatternLayout pattern="%msg%n"/>
       		<Filters>
-    			<ThresholdFilter level="INFO"/>
+    			<ThresholdFilter level="DEBUG"/>
     			<ThresholdFilter level="FATAL" onMatch="DENY" onMismatch="NEUTRAL"/>
 			</Filters>
     	</Console>
