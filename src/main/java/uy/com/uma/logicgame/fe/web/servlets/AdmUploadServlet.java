@@ -83,7 +83,6 @@ public class AdmUploadServlet extends DBAccessServlet implements ILogicGameWebCo
 	    final String extArch = UtilIO.extFile(fileName);
 	    final PrintWriter writer = response.getWriter();
 	    final String idioma = request.getParameter(PARAM_IDIOMA);
-	    boolean dbIniciada = false;
 	    log.debug("Idioma=" + idioma + ", Extension=" + extArch + ", Archivo=" + fileName);	    
 
 	    try {
@@ -96,8 +95,6 @@ public class AdmUploadServlet extends DBAccessServlet implements ILogicGameWebCo
 	    			writer.println("Clave de administracion incorrecta");
 	    		else {	    	
 			    	if (extArch.equalsIgnoreCase("zip")) {
-			    		dbIniciada = true;
-			    		initDB();
 				        ICargadorRecursos loader = PersistenciaFactory.getInstancia().getCargadorRecursos();
 				        loader.setInputStream(filePart.getInputStream());
 				        
@@ -123,13 +120,6 @@ public class AdmUploadServlet extends DBAccessServlet implements ILogicGameWebCo
 	        e.printStackTrace();
 	    } finally {
 	    	UtilIO.closeWriter(writer);
-	    	
-	    	if (dbIniciada)
-	    		try {
-	    			PersistenciaFactory.getInstancia().getManejadorSesiones().shutdown();
-	    		} catch (Exception e) {
-	    			log.warn("Error al cerrar sesion de base de datos", e);
-	    		}
 	    }
 	}
 	

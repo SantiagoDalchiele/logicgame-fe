@@ -4,20 +4,20 @@ import uy.com.uma.logicgame.api.persistencia.IManejadorEstructura;
 import uy.com.uma.logicgame.api.persistencia.PersistenciaException;
 
 /**
- * Lanza la solicitud de asignación de permisos para los roles de la base de datos
+ * Lanza el borrado de datos de todas las tablas del sistema
  *
  * @author Santiago Dalchiele
  */
-public class AsignarPermisosAction extends AdmEstructuraAbstractAction {
+public class BorrarDatosAction extends AdmEstructuraAbstractAction {
 
 	@Override
 	public String getName() {
-		return ID_REQ_ASIGNAR_PERMISOS;
+		return ID_REQ_BORRAR_DATOS;
 	}
-
+	
 	@Override
 	protected String doAction(IManejadorEstructura manEstructura) throws PersistenciaException {
-		manEstructura.asignarPermisos();
-		return "Se asignaron los permisos con exito";
+		manEstructura.borrarDatos();
+		return "Datos borrados con exito";
 	}
 }

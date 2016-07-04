@@ -21,8 +21,8 @@ import uy.com.uma.logicgame.fe.web.Configuracion;
 import uy.com.uma.logicgame.fe.web.ILogicGameWebConstants;
 import uy.com.uma.logicgame.fe.web.actions.JuegoAbstractAction;
 import uy.com.uma.logicgame.fe.web.adm.actions.AdmAbstractAction;
-import uy.com.uma.logicgame.fe.web.adm.actions.AsignarPermisosAction;
-import uy.com.uma.logicgame.fe.web.adm.actions.CrearRolesAction;
+import uy.com.uma.logicgame.fe.web.adm.actions.BorrarDatosAction;
+import uy.com.uma.logicgame.fe.web.adm.actions.BorrarTablasAction;
 import uy.com.uma.logicgame.fe.web.adm.actions.CrearRutaXDefectoAction;
 import uy.com.uma.logicgame.fe.web.adm.actions.CrearTablasAction;
 import uy.com.uma.logicgame.fe.web.adm.actions.LoginAction;
@@ -57,9 +57,9 @@ public class FachadaAdmLgServlet extends HttpServlet implements ILogicGameWebCon
 		
 		try {
 			configuracion = Configuracion.getInstancia();
-			List<AdmAbstractAction> accs = new ArrayList<AdmAbstractAction>();			
-			accs.add(new AsignarPermisosAction());
-			accs.add(new CrearRolesAction());
+			List<AdmAbstractAction> accs = new ArrayList<AdmAbstractAction>();
+			accs.add(new BorrarDatosAction());
+			accs.add(new BorrarTablasAction());
 			accs.add(new CrearRutaXDefectoAction());
 			accs.add(new CrearTablasAction());
 			accs.add(new LoginAction());			

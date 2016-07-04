@@ -4,20 +4,20 @@ import uy.com.uma.logicgame.api.persistencia.IManejadorEstructura;
 import uy.com.uma.logicgame.api.persistencia.PersistenciaException;
 
 /**
- * Accion para crear los roles de la base de datos
+ * Ejecuta la acción de borrado de tablas en la base de datos
  *
  * @author Santiago Dalchiele
  */
-public class CrearRolesAction extends AdmEstructuraAbstractAction {
+public class BorrarTablasAction extends AdmEstructuraAbstractAction {
 
 	@Override
-	public String getName() {		
-		return ID_REQ_CREAR_ROLES;
+	public String getName() {
+		return ID_REQ_BORRAR_TABLAS;
 	}
 
 	@Override
 	protected String doAction(IManejadorEstructura manEstructura) throws PersistenciaException {
-		manEstructura.crearRoles();
-		return "Roles creados con exito";
+		manEstructura.borrarTablas();
+		return "Tablas borradas con éxito";
 	}
 }

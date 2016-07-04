@@ -12,11 +12,12 @@ var AdmLG = (function() {
 	 * Requerimientos ajax
 	 * @see uy.com.uma.logicgame.fe.web.adm.actions.AdmAbstractAction
 	 */
-	var ID_REQ_LOGIN_ADM = "login.admdo";
-	var ID_REQ_CREAR_ROLES = "crear_roles.admdo";
-	var ID_REQ_CREAR_TABLAS = "crear_tablas.admdo";
-	var ID_REQ_ASIGNAR_PERMISOS = "asignar_permisos.admdo";
+	var ID_REQ_BORRAR_TABLAS		= "borrar_tablas.admdo";
+	var ID_REQ_BORRAR_DATOS			= "borrar_datos.admdo";
+	var ID_REQ_CREAR_TABLAS			= "crear_tablas.admdo";
 	var ID_REQ_CREAR_RUTA_X_DEFECTO = "crear_ruta_x_defecto.admdo"
+	var ID_REQ_LOGIN_ADM			= "login.admdo";
+	
 	
 	/** Ruta de la página principal de administración del sistema */
 	var ADM_LG_PAGE_PATH = "jsp/admlg.jsp"; 
@@ -34,36 +35,20 @@ var AdmLG = (function() {
 	
 	
 	/**
-	 * Envia el requerimiento ajax de crear roles
+	 * Envio de requerimientos AJAX
 	 */
-	my.doCrearRoles = function() {
-		ajaxPost(ID_REQ_CREAR_ROLES, {}, false, procesarAdmBaseDatos);
+	my.doBorrarTablas = function() {
+		ajaxPost(ID_REQ_BORRAR_TABLAS, {}, false, procesarAdmBaseDatos);
 	}
 	
+	my.doBorrarDatos = function() {
+		ajaxPost(ID_REQ_BORRAR_DATOS, {}, false, procesarAdmBaseDatos);
+	}
 	
-	
-	/**
-	 * Envia el requerimiento ajax de crear las tablas
-	 */
 	my.doCrearTablas = function() {
 		ajaxPost(ID_REQ_CREAR_TABLAS, {}, false, procesarAdmBaseDatos);
 	}
 	
-	
-	
-	/**
-	 * Envia el requerimiento ajax de asignar los permisos para los roles en la base de datos
-	 */
-	my.doAsignarPermisos = function() {
-		ajaxPost(ID_REQ_ASIGNAR_PERMISOS, {}, false, procesarAdmBaseDatos);
-	}
-	
-	
-	
-	/**
-	 * Envia el requerimiento ajax de crear la ruta por defecto en la base de datos para asignar
-	 * a los usuarios nuevos que se crean
-	 */
 	my.doCrearRutaXDefecto = function() {
 		ajaxPost(ID_REQ_CREAR_RUTA_X_DEFECTO, {}, false, procesarAdmBaseDatos);
 	}

@@ -14,9 +14,7 @@
 
 <table id="lg.adm.menu.estructura">
 	<tr>
-		<td><input type="button" id="lg_btt_crear_roles" value="Crear Roles" onclick="AdmLG.doCrearRoles()"/></td>
 		<td><input type="button" id="lg_btt_crear_tablas" value="Crear Tablas" onclick="AdmLG.doCrearTablas()"/></td>
-		<td><input type="button" id="lg_btt_asignar_permisos" value="Asignar Permisos" onclick="AdmLG.doAsignarPermisos()"/></td>
 	</tr>
 </table>
 <hr>
@@ -29,6 +27,13 @@
 <table>
 	<tr>
 		<td><input type="button" id="lg_btt_crear_ruta_x_defecto" value="Crear Ruta por Defecto" onclick="AdmLG.doCrearRutaXDefecto()"/></td>
+	</tr>
+</table>
+<hr>
+<table>
+	<tr>
+		<td><input type="button" id="lg_btt_borrar_datos" value="Borrar Datos" onclick="AdmLG.doBorrarDatos()"/></td>
+		<td><input type="button" id="lg_btt_borrar_tablas" value="Borrar Tablas" onclick="AdmLG.doBorrarTablas()"/></td>
 	</tr>
 </table>
 </form>

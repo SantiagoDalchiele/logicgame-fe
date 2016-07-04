@@ -19,9 +19,9 @@ public abstract class AdmAbstractAction {
 
 	/** Constantes que definen los requerimientos AJAX */
 	protected static final String ID_REQ_LOGIN = "login.admdo";
-	protected static final String ID_REQ_CREAR_ROLES = "crear_roles.admdo";
 	protected static final String ID_REQ_CREAR_TABLAS = "crear_tablas.admdo";
-	protected static final String ID_REQ_ASIGNAR_PERMISOS = "asignar_permisos.admdo";
+	protected static final String ID_REQ_BORRAR_TABLAS = "borrar_tablas.admdo";
+	protected static final String ID_REQ_BORRAR_DATOS = "borrar_datos.admdo";
 	protected static final String ID_REQ_CREAR_RUTA_X_DEFECTO = "crear_ruta_x_defecto.admdo";
 	
 	
