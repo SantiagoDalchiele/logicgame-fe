@@ -23,12 +23,12 @@
 		<dependency>
 	    	<groupId>uy.com.uma</groupId>
 	    	<artifactId>comun</artifactId>
-    		<version>0.0.1</version>
+    		<version>0.0.2</version>
 		</dependency>
 		<dependency>
 			<groupId>uy.com.uma</groupId>
 			<artifactId>logicgame</artifactId>
-			<version>0.0.1</version>
+			<version>0.0.2</version>
 		</dependency>		
 	  	<dependency>
 	    	<groupId>org.apache.logging.log4j</groupId>

@@ -77,6 +77,4 @@
   </manejadores>
   <ruta-defecto>1</ruta-defecto>
   <security-salt>h0WJVmKmVOnOi4J4QenixH7FIf2dW0TiQja4UpcxDgU=</security-salt>
-  <clave-rol-adm>md54b42ae7558548a3743da7bd729dffe56</clave-rol-adm> <!-- logicgame -->
-  <clave-rol-web>md52857636bdbdf5b6dbee3da682c4e2b78</clave-rol-web> <!-- logicgame -->
 </configuracion>
