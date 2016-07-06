@@ -6,7 +6,9 @@ import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
+import uy.com.uma.logicgame.fe.web.ActionsHelper;
 import uy.com.uma.logicgame.fe.web.Configuracion;
+import uy.com.uma.logicgame.fe.web.ILogicGameWebConstants;
 
 
 /**
@@ -15,7 +17,7 @@ import uy.com.uma.logicgame.fe.web.Configuracion;
  *
  * @author Santiago Dalchiele
  */
-public abstract class AdmAbstractAction {
+public abstract class AdmAbstractAction extends ActionsHelper implements ILogicGameWebConstants {
 
 	/** Constantes que definen los requerimientos AJAX */
 	protected static final String ID_REQ_LOGIN = "login.admdo";
@@ -23,6 +25,7 @@ public abstract class AdmAbstractAction {
 	protected static final String ID_REQ_BORRAR_TABLAS = "borrar_tablas.admdo";
 	protected static final String ID_REQ_BORRAR_DATOS = "borrar_datos.admdo";
 	protected static final String ID_REQ_CREAR_RUTA_X_DEFECTO = "crear_ruta_x_defecto.admdo";
+	protected static final String ID_REQ_GET_IDIOMAS = "getIdiomas.admdo";
 	
 	
 	/** Configuración del sistema */
@@ -43,5 +46,25 @@ public abstract class AdmAbstractAction {
 	 */
 	public void setConfiguracion (Configuracion conf) {
 		this.configuracion = conf;
+	}
+	
+	
+	
+	/**
+	 * Chequea que esté logeado y que la clave sea correcta, en casa contrario ya escribe el error en el OutWriter
+	 */
+	protected boolean checkLogin (HttpServletRequest req, PrintWriter out) {
+		if (req.getSession().getAttribute(ID_ATT_CLAVE_ADM) == null)
+			out.write(getErrorJSON ("Usuario no logeado para adminstrar"));
+		else {
+			final String clave = req.getSession().getAttribute(ID_ATT_CLAVE_ADM).toString();				
+		
+			if (!clave.equals(configuracion.getAdmPassword()))
+				out.write(getErrorJSON ("Clave de administracion incorrecta"));
+			else
+				return true;
+		}
+		
+		return false;
 	}
 }

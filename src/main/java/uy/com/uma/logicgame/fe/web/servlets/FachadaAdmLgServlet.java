@@ -17,6 +17,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import uy.com.uma.comun.util.UtilAJAX;
+import uy.com.uma.logicgame.api.persistencia.PersistenciaFactory;
 import uy.com.uma.logicgame.fe.web.Configuracion;
 import uy.com.uma.logicgame.fe.web.ILogicGameWebConstants;
 import uy.com.uma.logicgame.fe.web.actions.JuegoAbstractAction;
@@ -25,6 +26,7 @@ import uy.com.uma.logicgame.fe.web.adm.actions.BorrarDatosAction;
 import uy.com.uma.logicgame.fe.web.adm.actions.BorrarTablasAction;
 import uy.com.uma.logicgame.fe.web.adm.actions.CrearRutaXDefectoAction;
 import uy.com.uma.logicgame.fe.web.adm.actions.CrearTablasAction;
+import uy.com.uma.logicgame.fe.web.adm.actions.GetIdiomasAction;
 import uy.com.uma.logicgame.fe.web.adm.actions.LoginAction;
 
 /**
@@ -53,15 +55,17 @@ public class FachadaAdmLgServlet extends HttpServlet implements ILogicGameWebCon
 	 */
 	@Override
 	public void init() throws ServletException {
-		super.init();
+		super.init();		
 		
 		try {
 			configuracion = Configuracion.getInstancia();
+			initDB();
 			List<AdmAbstractAction> accs = new ArrayList<AdmAbstractAction>();
 			accs.add(new BorrarDatosAction());
 			accs.add(new BorrarTablasAction());
 			accs.add(new CrearRutaXDefectoAction());
 			accs.add(new CrearTablasAction());
+			accs.add(new GetIdiomasAction());
 			accs.add(new LoginAction());			
 			
 			for (AdmAbstractAction acc : accs) {
@@ -74,8 +78,21 @@ public class FachadaAdmLgServlet extends HttpServlet implements ILogicGameWebCon
 		}
 	}
 	
+	
+	
+	/**
+	 * Inicializa el acceso a la base de datos
+	 */
+	protected void initDB() throws ServletException {
+		try {
+			PersistenciaFactory.getInstancia().getManejadorSesiones().reset(configuracion.getAdmDBUser(), configuracion.getAdmDBPassword());
+		} catch (Exception e) {
+			throw new ServletException("Error al configurar la conexion a la base de datos", e);
+		}
+	}
 
 
+	
 	/**
 	 * Redirecciona al get
 	 */
@@ -106,5 +123,5 @@ public class FachadaAdmLgServlet extends HttpServlet implements ILogicGameWebCon
 			log.fatal("Error al procesar la solicitud de administracion logicgame", e);
 			response.getWriter().write(JuegoAbstractAction.getErrorJSON(e));		
 		}
-	}
+	}	
 }

@@ -30,22 +30,11 @@ public abstract class AdmEstructuraAbstractAction extends AdmAbstractAction impl
 	@Override
 	public void perform(HttpServletRequest req, PrintWriter out) throws ServletException, IOException {
 		try {
-			String result = "";		
-	
-			if (req.getSession().getAttribute(ID_ATT_CLAVE_ADM) == null)
-				result = "Usuario no logeado para adminstrar";
-			else {
-				final String clave = req.getSession().getAttribute(ID_ATT_CLAVE_ADM).toString();				
-    		
-				if (!clave.equals(configuracion.getAdmPassword()))
-					result = "Clave de administracion incorrecta";
-				else {
-					IManejadorEstructura manEstructura = PersistenciaFactory.getInstancia().getManejadorEstructura();			
-					result = doAction(manEstructura);
-				}
+			if (checkLogin(req, out)) {
+				IManejadorEstructura manEstructura = PersistenciaFactory.getInstancia().getManejadorEstructura();			
+				String result = doAction(manEstructura);
+				out.write("{" + UtilJSON.getPropJSON("resultado") + UtilJSON.getComillasJSON("" + result) + "}");
 			}
-			
-			out.write("{" + UtilJSON.getPropJSON("resultado") + UtilJSON.getComillasJSON("" + result) + "}");
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | ConfiguracionException | PersistenciaException e) {
 			throw new ServletException(e);
 		}

@@ -17,6 +17,7 @@ var AdmLG = (function() {
 	var ID_REQ_CREAR_TABLAS			= "crear_tablas.admdo";
 	var ID_REQ_CREAR_RUTA_X_DEFECTO = "crear_ruta_x_defecto.admdo"
 	var ID_REQ_LOGIN_ADM			= "login.admdo";
+	var ID_REQ_GET_IDIOMAS			= "getIdiomas.admdo";
 	
 	
 	/** Ruta de la página principal de administración del sistema */
@@ -51,6 +52,10 @@ var AdmLG = (function() {
 	
 	my.doCrearRutaXDefecto = function() {
 		ajaxPost(ID_REQ_CREAR_RUTA_X_DEFECTO, {}, false, procesarAdmBaseDatos);
+	}
+	
+	my.doGetIdiomas = function() {
+		ajaxPost(ID_REQ_GET_IDIOMAS, {}, false, procesarGetIdiomas);
 	}
 	
 	
@@ -103,6 +108,28 @@ var AdmLG = (function() {
 	}
 	
 	
+	
+	/**
+	 * Borra todas las filas de la tabla idiomas y carga la tabla con los datos de los idiomas
+	 */
+	function procesarGetIdiomas (data) {
+		if (data.idiomas) {
+			var tblIdiomas = document.getElementById("idiomas"); 
+			$("#idiomas").empty();
+			
+			for (i in data.idiomas) {
+				var idioma = data.idiomas[i];
+				var row = tblIdiomas.insertRow(-1);
+				var celda = row.insertCell(-1);
+				celda.innerHTML = idioma.id;				
+				celda = row.insertCell(-1);
+				celda.innerHTML = idioma.nombre;				
+				celda = row.insertCell(-1);
+				celda.innerHTML = idioma.icono;				
+			}
+		} else
+			alert("Error inesperado al realizar la accion");
+	}
 	
 	return my;
 }());

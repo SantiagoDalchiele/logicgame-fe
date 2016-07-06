@@ -10,11 +10,11 @@ import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import uy.com.uma.comun.util.UtilJSON;
 import uy.com.uma.logicgame.api.LogicGameException;
 import uy.com.uma.logicgame.api.conf.ConfiguracionException;
 import uy.com.uma.logicgame.api.persistencia.PersistenciaException;
 import uy.com.uma.logicgame.api.persistencia.PersistenciaFactory;
+import uy.com.uma.logicgame.fe.web.ActionsHelper;
 import uy.com.uma.logicgame.fe.web.Configuracion;
 
 /**
@@ -23,16 +23,10 @@ import uy.com.uma.logicgame.fe.web.Configuracion;
  *
  * @author Santiago Dalchiele
  */
-public abstract class JuegoAbstractAction {
+public abstract class JuegoAbstractAction extends ActionsHelper {
 	
 	private static final Logger log = LogManager.getLogger(JuegoAbstractAction.class.getName());
 	
-	
-	/** Constante para identificar el tipo de error que el usuario no está logeado */ 
-	protected static final int TIPO_ERROR_NO_LOGEADO = 2666;
-	
-	/** Mensaje de error parametros incorrectos */
-	protected static final String MSG_PARAMS_INCORRECTOS = "Parametros incorrectos";
 	
 	/** Constantes que definen los requerimientos AJAX */
 	protected static final String ID_REQ_LOGIN = "login.do";
@@ -59,13 +53,6 @@ public abstract class JuegoAbstractAction {
 	protected static final String ID_PARAM_ESTADO = "estado";
 	protected static final String ID_PARAM_IDIOMA = "lang";	
 	protected static final String ID_OBJ_MATRIZ_JUEGO = "matriz.juego";
-	
-	/** Constantes que definen los nombres de las propiedades del objeto error */
-	public static final String PROP_ERROR = "error";
-	public static final String PROP_ERROR_TIPO = "tipo";
-	public static final String PROP_ERROR_NRO = "nro";
-	public static final String PROP_ERROR_MENSAJE = "mensaje";
-	public static final String PROP_ERROR_DETALLE = "detalle";
 	
 	/** Configuración del sistema */
 	protected Configuracion configuracion;
@@ -138,37 +125,6 @@ public abstract class JuegoAbstractAction {
 	protected boolean validarParametros (HttpServletRequest req, PrintWriter out) {
        	out.write(getErrorJSON (MSG_PARAMS_INCORRECTOS));
        	return false;
-	}
-	
-	
-	
-	/**
-	 * Retorna el texto del objeto JSON utilizado para enviar un error a la UI 
-	 */
-	public static String getErrorJSON (Exception e) {
-		return getErrorJSON(2, 77, e.getMessage(), "");
-	}
-	
-	
-	
-	/**
-	 * Retorna el texto del objeto JSON utilizado para enviar un error a la UI 
-	 */
-	public static String getErrorJSON (String mensaje) {
-		return getErrorJSON(1, 86, mensaje, "");
-	}
-	
-	
-	
-	/**
-	 * Retorna el texto del objeto JSON utilizado para enviar un error a la UI 
-	 */
-	protected static String getErrorJSON (int tipo, int nro, String mensaje, String detalle) {
-		return "{" + UtilJSON.getPropJSON(PROP_ERROR) + "{" + 
-				UtilJSON.getPropJSON(PROP_ERROR_TIPO) + tipo + "," +
-				UtilJSON.getPropJSON(PROP_ERROR_NRO) + nro + "," +
-				UtilJSON.getPropJSON(PROP_ERROR_MENSAJE) + UtilJSON.getValorJSON(mensaje) +
-				UtilJSON.getPropJSON(PROP_ERROR_DETALLE) + UtilJSON.getComillasJSON(detalle) + "}}";
 	}
 	
 	

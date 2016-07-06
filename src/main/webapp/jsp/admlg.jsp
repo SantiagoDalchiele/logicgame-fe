@@ -36,6 +36,11 @@
 		<td><input type="button" id="lg_btt_borrar_tablas" value="Borrar Tablas" onclick="AdmLG.doBorrarTablas()"/></td>
 	</tr>
 </table>
+<hr>
+<table>
+	<tr><td>Idiomas</td><td><input type="button" id="lg_btt_get_idiomas" value="Obtener" onclick="AdmLG.doGetIdiomas()"/></td></tr>
+	<tr><td><table id="idiomas"></table></td></tr>
+</table>
 </form>
 </body>
 </html>

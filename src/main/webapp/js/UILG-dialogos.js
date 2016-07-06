@@ -13,7 +13,7 @@ var UILG = (function (my) {
 	
 	/** 
 	 * Tipo de error que el usuario necesita logearse al sistema
-	 * @see uy.com.uma.logicgame.be.web.actions.JuegoAbstractAction
+	 * @see uy.com.uma.logicgame.fe.web.ActionsHelper
 	 */ 
 	var TIPO_ERROR_NO_LOGEADO = 2666;
 	
