@@ -49,13 +49,13 @@ var MainLG = (function () {
 	 * Inicializa la interface grafica
 	 */
 	my.init = function() {
-		$("#panel_ui_juego").hide();
+		$("#lg_panel_ui_juego").hide();
 		UILG.initConfiguracion();
 		UILG.initLogin();
 		UILG.initRegistro();	
 		
 		if (UILG.estaLogeado()) {
-			$("#panel_login").hide();
+			$("#lg_panel_login").hide();
 			
 			if (UILG.getConfiguracionOK()) {
 				UILG.resetLangDialogos();				

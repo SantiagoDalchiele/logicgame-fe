@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 import uy.com.uma.comun.util.UtilFormato;
 import uy.com.uma.comun.util.UtilJSON;
 import uy.com.uma.logicgame.api.LogicGameException;
-import uy.com.uma.logicgame.api.bean.DatosUsuario;
+import uy.com.uma.logicgame.api.bean.UsuarioDO;
 import uy.com.uma.logicgame.api.conf.ConfiguracionException;
 import uy.com.uma.logicgame.api.persistencia.IManejadorJuegoWeb;
 import uy.com.uma.logicgame.api.persistencia.PersistenciaException;
@@ -95,7 +95,7 @@ public class GetJuegoAction extends SeguridadAbstractAction implements ILogicGam
 		MatrizJuego matriz;
 		
 		try {
-			DatosUsuario datos = manSeg.getDatosUsuario(idUsuario);
+			UsuarioDO datos = manSeg.getDatosUsuario(idUsuario);
 			String rutaCss = manSeg.getRutaHojaEstilo(idUsuario);
 			
 			if (! UtilFormato.esNulo(rutaCss))

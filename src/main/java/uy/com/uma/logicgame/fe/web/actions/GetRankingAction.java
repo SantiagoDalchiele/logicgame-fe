@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import uy.com.uma.comun.util.UtilJSON;
 import uy.com.uma.logicgame.api.LogicGameException;
-import uy.com.uma.logicgame.api.bean.DatosUsuario;
+import uy.com.uma.logicgame.api.bean.UsuarioDO;
 import uy.com.uma.logicgame.api.persistencia.PersistenciaException;
 
 /**
@@ -39,10 +39,10 @@ public class GetRankingAction extends SeguridadAbstractAction {
 		String idUsuario = req.getSession().getAttribute(ID_PARAM_ID_USUARIO).toString();
 		
 		try {
-			Collection<DatosUsuario> rank = manSeg.getRanking(idUsuario, configuracion.getMaxUsersRanking());
+			Collection<UsuarioDO> rank = manSeg.getRanking(idUsuario, configuracion.getMaxUsersRanking());
 			StringBuffer ret = new StringBuffer("{" + UtilJSON.getPropJSON(TAG_RANKING) + "[");
 			
-			for (DatosUsuario du : rank) {
+			for (UsuarioDO du : rank) {
 				ret.append("{" + UtilJSON.getPropJSON(TAG_NIVEL) + du.getNivel() + ",");
 				ret.append(UtilJSON.getPropJSON(TAG_USUARIO) + UtilJSON.getComillasJSON(du.getAlias()) + "},");
 			}

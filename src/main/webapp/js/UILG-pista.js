@@ -6,9 +6,9 @@
 var UILG = (function (my) {
 
 	/** Identificadores de los elementos de la UI */
-	var ID_ELEMENT_TEXT_AREA_PISTA = "pista";
-	var ID_ELEMENT_IMG_PREVIO = "previo";
-	var ID_ELEMENT_IMG_SIGUIENTE = "siguiente";
+	var ID_ELEMENT_TEXT_AREA_PISTA = "lg_pista";
+	var ID_ELEMENT_IMG_PREVIO = "lg_previo";
+	var ID_ELEMENT_IMG_SIGUIENTE = "lg_siguiente";
 	
 	/** Rutas de las imagenes utilizadas */
 	var IMG_PREVIO_HABILITADO = "img/left.png";
@@ -40,8 +40,8 @@ var UILG = (function (my) {
 	 */
 	my.resetLangPistas = function() {
 		i18n.init(UILG.getLenguaje(), function(err, t) {
-			$("#previo").prop('title', t("ui.tooltips.botonPrevio"));
-			$("#siguiente").prop('title', t("ui.tooltips.botonSiguiente"));			
+			$("#lg_previo").prop('title', t("ui.tooltips.botonPrevio"));
+			$("#lg_siguiente").prop('title', t("ui.tooltips.botonSiguiente"));			
     	});
 	}
 	

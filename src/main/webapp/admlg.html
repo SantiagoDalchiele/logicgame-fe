@@ -11,7 +11,7 @@
 
 <body>
 <table id="panel_login">
-	<tr><td><input id="lg_password" type="password" placeholder="Clave" /></td></tr>
+	<tr><td><input id="lg_password" type="password" placeholder="Clave" onkeypress="UtilLG.defaultButton(event, 'lg_btt_login')"/></td></tr>
 	<tr><td><input type="button" id="lg_btt_login" value="Login" onclick="AdmLG.doLoginAdm()"/></td></tr>
 </table>
 </body>

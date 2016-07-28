@@ -30,9 +30,9 @@ var UILG = (function (my) {
 	var ERROR_INCORRECTO;	
 	
 	/** Identificadores de los elementos de la UI */
-	var ID_ELEMENT_TABLA_JUEGO = "tabla_juego";
-	var ID_ELEMENT_BTT_HISTORIA = "boton_historia";
-	var ID_ELEMENT_BTT_FINALIZAR = "boton_finalizar";
+	var ID_ELEMENT_TABLA_JUEGO = "lg_tabla_juego";
+	var ID_ELEMENT_BTT_HISTORIA = "lg_boton_historia";
+	var ID_ELEMENT_BTT_FINALIZAR = "lg_boton_finalizar";
 
 	/** Rutas de las imagenes utilizadas */
 	var IMG_ACCION_BLANCO = "img/blanco.png";
@@ -103,7 +103,7 @@ var UILG = (function (my) {
 		myRender.renderJuego = function (dimsSuperior, dimsLateral) {
 			cantValores = dimsSuperior[0].valores.length;
 			var tbl = document.getElementById(ID_ELEMENT_TABLA_JUEGO);
-			$("#tabla_juego").empty();
+			$("#lg_tabla_juego").empty();
 			renderDimsXColumnas (tbl, dimsSuperior);
 			renderDimsXFilas (tbl, dimsSuperior, dimsLateral);	
 		}
@@ -121,7 +121,7 @@ var UILG = (function (my) {
 			var celdaNula = rowCabDim.insertCell(-1);
 			celdaNula.rowSpan = 2;
 			celdaNula.colSpan = 2;
-			celdaNula.className = "juego-celda juego-celda-nula";
+			celdaNula.className = "lg_juego-celda lg_juego-celda-nula";
 			celdaNula.style.textAlign = "center";
 			celdaNula.style.verticalAlign = "center";		
 			
@@ -137,7 +137,7 @@ var UILG = (function (my) {
 				var celda = rowCabDim.insertCell(-1);
 				celda.colSpan = dimsSuperior[i].valores.length;
 				celda.style.textAlign = "center";			
-				celda.className = "juego-celda";
+				celda.className = "lg_juego-celda";
 				celda.style.borderTopWidth = BORDE_TABLA_GRUESO;
 				celda.style.borderLeftWidth = BORDE_TABLA_GRUESO;
 				
@@ -145,7 +145,7 @@ var UILG = (function (my) {
 					celda.style.borderRightWidth = BORDE_TABLA_GRUESO;
 				
 				var divId = document.createElement("DIV");
-				divId.className = "juego-tit-sup";
+				divId.className = "lg_juego-tit-sup";
 				divId.innerHTML = dimsSuperior[i].id;
 				celda.appendChild(divId);
 			}
@@ -158,7 +158,7 @@ var UILG = (function (my) {
 				
 				for (var j = 0; j < valores.length; j++) {
 					var celda = rowValsDim.insertCell(-1);
-					celda.className = "juego-celda juego-celda-sup";
+					celda.className = "lg_juego-celda lg_juego-celda-sup";
 					celda.style.borderBottomWidth = BORDE_TABLA_GRUESO;
 					
 					if (j == 0)
@@ -168,7 +168,7 @@ var UILG = (function (my) {
 						celda.style.borderRightWidth = BORDE_TABLA_GRUESO;				
 					
 					var divVal = document.createElement("DIV");
-					divVal.className = "juego-vertical";
+					divVal.className = "lg_juego-vertical";
 					divVal.style.minHeight = (9 * valores[j].length) + "px";
 					divVal.style.maxHeight = (9 * valores[j].length) + "px";
 					divVal.innerHTML = valores[j];
@@ -197,7 +197,7 @@ var UILG = (function (my) {
 					if (j == 0) {
 						celda = row.insertCell(-1);
 						celda.rowSpan = valores.length;
-						celda.className = "juego-celda juego-celda-lateral";
+						celda.className = "lg_juego-celda lg_juego-celda-lateral";
 						celda.style.verticalAlign = "center";
 						celda.style.textAlign = "center";
 						celda.style.borderLeftWidth = BORDE_TABLA_GRUESO;
@@ -207,7 +207,7 @@ var UILG = (function (my) {
 							celda.style.borderTopWidth = BORDE_TABLA_GRUESO;
 						
 						div = document.createElement("DIV");
-						div.className = "juego-vertical";
+						div.className = "lg_juego-vertical";
 						div.style.maxHeight = (10 * dimsLateral[i].id.length) + "px";
 						div.innerHTML = dimsLateral[i].id;
 						celda.appendChild(div);
@@ -215,7 +215,7 @@ var UILG = (function (my) {
 					
 					/** Celda con el valor de la dimensión */
 					celda = row.insertCell(-1);
-					celda.className = "juego-celda";
+					celda.className = "lg_juego-celda";
 					celda.style.borderRightWidth = BORDE_TABLA_GRUESO;
 					
 					if (j == 0)
@@ -248,7 +248,7 @@ var UILG = (function (my) {
 			for (var k = 0; k < (dimsSuperior.length-i); k++) {
 				for (var h = 0; h < dimsSuperior[k].valores.length; h++) {
 					celda = row.insertCell(-1);
-					celda.className = "juego-celda";
+					celda.className = "lg_juego-celda";
 					
 					if (h == (dimsSuperior[k].valores.length-1))
 						celda.style.borderRightWidth = BORDE_TABLA_GRUESO;
@@ -259,7 +259,7 @@ var UILG = (function (my) {
 					var img = document.createElement("IMG");
 					img.id = i + "." + k + "." + j + "." + h;
 					ids.push(img.id);
-					img.className = "juego-celda-sel";			
+					img.className = "lg_juego-celda-sel";			
 					img.onclick = function(){ UILG.changeImage(this.id); };
 					img.onmouseover = function() { UILG.celdaSeleccionada(this.id); };
 					img.onmouseleave = function(){ UILG.cambioValor(this.id); };
@@ -274,7 +274,7 @@ var UILG = (function (my) {
 					celda = row.insertCell(-1);
 					celda.rowSpan = dimsSuperior[0].valores.length;
 					celda.colSpan = dimsSuperior[0].valores.length;
-					celda.className = "juego-celda juego-celda-nula";
+					celda.className = "lg_juego-celda lg_juego-celda-nula";
 				}									
 				
 				celda.style.textAlign = "right";
@@ -282,7 +282,7 @@ var UILG = (function (my) {
 				var img = document.createElement("IMG");
 				img.id = ID_ELEMENT_BTT_FINALIZAR;
 				img.src = "img/checkered_flag_icon.png";
-				img.className = "juego-icono-grande";
+				img.className = "lg_juego-icono-grande";
 				img.onclick = function(){ UILG.finJuego(); };			
 				celda.appendChild(img);
 			}
@@ -303,17 +303,17 @@ var UILG = (function (my) {
 	 */
 	my.resetLangJuego = function() {
 		i18n.init(UILG.getLenguaje(), function(err, t) {			
-			$("#dialogoError").prop('title', t("ui.titulosDialogos.error"));
-			$("#dialogoFinalizacion").prop('title',  t("ui.titulosDialogos.finalizacion"));
-			$("#dialogoConfiguracion").prop('title',  t("ui.titulosDialogos.configuracion"));
-			$("#finalizacion_msg").text(t("ui.mensajeFinalizacion"));			
-			$("#ranking_button").prop('title', t("ui.tooltips.botonRanking"));
-			$("#grabar_btt").prop('title', t("ui.tooltips.botonGrabar"));
-			$("#deshacer_btt").prop('title', t("ui.tooltips.botonDeshacer"));
-			$("#rehacer_btt").prop('title', t("ui.tooltips.botonRehacer"));
-			$("#configurar_btt").prop('title', t("ui.tooltips.botonConfigurar"));
-			$("#reiniciar_btt").prop('title', t("ui.tooltips.botonReiniciar"));
-			$("#cerrarSession_btt").prop('title', t("ui.tooltips.botonCerrarSession"));			
+			$("#lg_dialogoError").prop('title', t("ui.titulosDialogos.error"));
+			$("#lg_dialogoFinalizacion").prop('title',  t("ui.titulosDialogos.finalizacion"));
+			$("#lg_dialogoConfiguracion").prop('title',  t("ui.titulosDialogos.configuracion"));
+			$("#lg_finalizacion_msg").text(t("ui.mensajeFinalizacion"));			
+			$("#lg_ranking_button").prop('title', t("ui.tooltips.botonRanking"));
+			$("#lg_grabar_btt").prop('title', t("ui.tooltips.botonGrabar"));
+			$("#lg_deshacer_btt").prop('title', t("ui.tooltips.botonDeshacer"));
+			$("#lg_rehacer_btt").prop('title', t("ui.tooltips.botonRehacer"));
+			$("#lg_configurar_btt").prop('title', t("ui.tooltips.botonConfigurar"));
+			$("#lg_reiniciar_btt").prop('title', t("ui.tooltips.botonReiniciar"));
+			$("#lg_cerrarSession_btt").prop('title', t("ui.tooltips.botonCerrarSession"));			
 			
 			TITULO_DIALOGO_CONFIRMACION = t("ui.titulosDialogos.confirmacion");
 			TITULO_DIALOGO_DESCRIPCION_JUEGO = t("ui.titulosDialogos.descripcionJuego");
@@ -328,8 +328,8 @@ var UILG = (function (my) {
 	
 	function resetLangObjDinamicos() {
 		i18n.init(UILG.getLenguaje(), function(err, t) {			
-			$("#boton_historia").prop('title', t("ui.tooltips.botonHistoria"));
-			$("#boton_finalizar").prop('title', t("ui.tooltips.botonFinalizar"));
+			$("#lg_boton_historia").prop('title', t("ui.tooltips.botonHistoria"));
+			$("#lg_boton_finalizar").prop('title', t("ui.tooltips.botonFinalizar"));
     	});
 	}
 	
@@ -351,7 +351,7 @@ var UILG = (function (my) {
 	 */
 	my.toggleRanking = function() {
 		UILG.ocultarDialogos();
-		$("#ranking_panel").animate({width:'toggle'},350);
+		$("#lg_ranking_panel").animate({width:'toggle'},350);
 	}
 	
 	
@@ -495,8 +495,8 @@ var UILG = (function (my) {
 		MainLG.initPistas(data.pistas);
 		cargarRanking();
 		resetLangObjDinamicos()
-		$("#panelEspera").hide();		
-		$("#panel_ui_juego").show();
+		$("#lg_panelEspera").hide();		
+		$("#lg_panel_ui_juego").show();
 	}
 	
 	
@@ -526,12 +526,12 @@ var UILG = (function (my) {
 	 * Carga el ranking
 	 */
 	function cargarRanking() {
-		$("#tabla_ranking").empty();
+		$("#lg_tabla_ranking").empty();
 		UILG.ajaxPost (ID_REQ_GET_RANKING, {}, false, renderRanking);
 	}
 	
 	function renderRanking (data) {
-		var tbl = document.getElementById("tabla_ranking");
+		var tbl = document.getElementById("lg_tabla_ranking");
 		
 		for (i in data.ranking) {
 			var elem = data.ranking[i];
@@ -574,8 +574,8 @@ var UILG = (function (my) {
 				}
 			} 
 			
-			$("#nivel_juego").text(data.nivel);
-			$("#titulo_juego").text(data.titulo);			
+			$("#lg_nivel_juego").text(data.nivel);
+			$("#lg_titulo_juego").text(data.titulo);			
 			descripcion = data.texto;			
 			Render.renderJuego(data.dimsSuperior, data.dimsLateral);
 			reiniciarInt();			
@@ -610,10 +610,10 @@ var UILG = (function (my) {
 	 * Muestra el panel de finalización de un nivel
 	 */
 	function finalizacion() {		
-		$("#dialogoFinalizacion").dialog({
+		$("#lg_dialogoFinalizacion").dialog({
 			modal: true,
 			closeOnEscape: false,
-			open: function(event, ui) { $(".ui-dialog-titlebar-close", ui.dialog | ui).hide(); },
+			open: function(event, ui) { $(".lg_ui-dialog-titlebar-close", ui.dialog | ui).hide(); },
 			buttons: [{
 				text: UILG.TXT_BOTON_ACEPTAR(),
 				click: function() {				
@@ -631,7 +631,7 @@ var UILG = (function (my) {
 	 */
 	function finalizacionAceptar() {
 		UILG.dialogoEspera();
-		$("#panel_ui_juego").hide();		
+		$("#lg_panel_ui_juego").hide();		
 		UILG.ajaxPost (ID_REQ_GET_JUEGO, {}, false, renderPanelJuego);
 	}
 	

@@ -31,6 +31,17 @@ var UtilLG = (function () {
 	
 	
 	
+	/**
+	 * Destruye una data table si esta existe (ya fue creada)
+	 */
+	my.destroyDataTable = function (selectorId) {
+		if ($.fn.dataTable.isDataTable(selectorId)) {
+		    table = $(selectorId).DataTable();
+		    table.destroy();
+		}
+	}
+	
+	
 	return my;
 }());
 

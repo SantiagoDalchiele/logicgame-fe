@@ -26,6 +26,9 @@ public abstract class AdmAbstractAction extends ActionsHelper implements ILogicG
 	protected static final String ID_REQ_BORRAR_DATOS = "borrar_datos.admdo";
 	protected static final String ID_REQ_CREAR_RUTA_X_DEFECTO = "crear_ruta_x_defecto.admdo";
 	protected static final String ID_REQ_GET_IDIOMAS = "getIdiomas.admdo";
+	protected static final String ID_REQ_GET_JUEGOS = "getJuegos.admdo";
+	protected static final String ID_REQ_GET_RUTAS = "getRutas.admdo";
+	protected static final String ID_REQ_GET_USUARIOS = "getUsuarios.admdo";
 	
 	
 	/** Configuración del sistema */

@@ -120,16 +120,6 @@ public abstract class JuegoAbstractAction extends ActionsHelper {
 	
 	
 	/**
-	 * Validacion por defecto de parametros, escribe en el PrintWriter el error de parametros incorrectos y retorna false
-	 */
-	protected boolean validarParametros (HttpServletRequest req, PrintWriter out) {
-       	out.write(getErrorJSON (MSG_PARAMS_INCORRECTOS));
-       	return false;
-	}
-	
-	
-	
-	/**
 	 * Setea la ruta absoluta de la aplicación
 	 */
 	public void setAppRealPath(String path) {

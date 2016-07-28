@@ -51,11 +51,11 @@ var UILG = (function (my) {
 	function dialogoConfiguracion() {		
 		initDialogo();
 		
-		$("#dialogoConfiguracion").dialog({
+		$("#lg_dialogoConfiguracion").dialog({
 			modal: true,
 			resizable: false,
 			closeOnEscape: false,
-			open: function(event, ui) { $(".ui-dialog-titlebar-close", ui.dialog | ui).hide(); },
+			open: function(event, ui) { $(".lg_ui-dialog-titlebar-close", ui.dialog | ui).hide(); },
 			buttons: [{
 					text: UILG.TXT_BOTON_ACEPTAR(),
 					click: function() {
@@ -76,7 +76,7 @@ var UILG = (function (my) {
 	 * Setea los valores iniciales del dialogo de configuración
 	 */	
 	function initDialogo() {
-		$("input[name='idiomas']").each(function() {
+		$("input[name='lg_idiomas']").each(function() {
 			if (UILG.getLang() == $(this).prop('id'))
 				$(this).prop("checked", true);
 		});
@@ -88,7 +88,7 @@ var UILG = (function (my) {
 	 * Setea la configuración ingresada en la UI
 	 */
 	function setConfiguracion() {
-		var newLang = $("input[name='idiomas']:checked").prop('id');
+		var newLang = $("input[name='lg_idiomas']:checked").prop('id');
 		
 		if (newLang != UILG.getLang()) {
 			UILG.setLang (newLang);
@@ -105,8 +105,8 @@ var UILG = (function (my) {
 	 */
 	function setConfiguracionAjax (data) {
 		UILG.setLang (data.lang);
-		var tblIdiomas = document.getElementById("conf_idiomas"); 
-		$("#conf_idiomas").empty();
+		var tblIdiomas = document.getElementById("lg_conf_idiomas"); 
+		$("#lg_conf_idiomas").empty();
 		
 		for (i in data.idiomas) {
 			var idioma = data.idiomas[i];
@@ -115,7 +115,7 @@ var UILG = (function (my) {
 			
 			var input = document.createElement("INPUT");
 			input.type = "radio";
-			input.name = "idiomas";
+			input.name = "lg_idiomas";
 			input.id = idioma.id;
 			input.checked = (idioma.id == UILG.getLang());
 			

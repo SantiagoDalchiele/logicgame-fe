@@ -1,5 +1,9 @@
 package uy.com.uma.logicgame.fe.web;
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletRequest;
+
 import uy.com.uma.comun.util.UtilJSON;
 
 /**
@@ -53,5 +57,15 @@ public abstract class ActionsHelper {
 				UtilJSON.getPropJSON(PROP_ERROR_NRO) + nro + "," +
 				UtilJSON.getPropJSON(PROP_ERROR_MENSAJE) + UtilJSON.getValorJSON(mensaje) +
 				UtilJSON.getPropJSON(PROP_ERROR_DETALLE) + UtilJSON.getComillasJSON(detalle) + "}}";
+	}
+	
+	
+	
+	/**
+	 * Validacion por defecto de parametros, escribe en el PrintWriter el error de parametros incorrectos y retorna false
+	 */
+	protected boolean validarParametros (HttpServletRequest req, PrintWriter out) {
+       	out.write(getErrorJSON (MSG_PARAMS_INCORRECTOS));
+       	return false;
 	}
 }

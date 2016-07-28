@@ -44,7 +44,7 @@ var UILG = (function (my) {
 	 * Oculta los dialogos
 	 */
 	my.ocultarDialogos = function() {
-		$("#panelEspera").hide();
+		$("#lg_panelEspera").hide();
 	}
 	
 	
@@ -70,11 +70,11 @@ var UILG = (function (my) {
 		}
 		
 		my.ocultarDialogos();		
-		$("#texto_dialogoBasico").text(texto);		
-		$("#dialogoBasico").dialog({
+		$("#lg_texto_dialogoBasico").text(texto);		
+		$("#lg_dialogoBasico").dialog({
 			modal: esModal,
 			title: titulo,
-			open: function(event, ui) { $(".ui-dialog-titlebar-close", ui.dialog | ui).show(); },
+			open: function(event, ui) { $(".lg_ui-dialog-titlebar-close", ui.dialog | ui).show(); },
 			buttons: botones
 		});
 	}
@@ -88,19 +88,19 @@ var UILG = (function (my) {
 		if (tipo == TIPO_ERROR_NO_LOGEADO) {
 			$("#lg_user").val("");
 			$("#lg_password").val("");
-			$("#panel_ui_juego").hide();
-			$("#panel_login").show();
+			$("#lg_panel_ui_juego").hide();
+			$("#lg_panel_login").show();
 			$("#lg_user").focus();
 		} else {
 			if (nro != 0)
 				mensaje = nro + " - " + mensaje;
 			
 			my.ocultarDialogos();
-			$("#error_msg").text(mensaje);
-			$("#error_detalle_texto").text(detalle);
-			$("#dialogoError").dialog({
+			$("#lg_error_msg").text(mensaje);
+			$("#lg_error_detalle_texto").text(detalle);
+			$("#lg_dialogoError").dialog({
 				modal: true,
-				open: function(event, ui) { $(".ui-dialog-titlebar-close", ui.dialog | ui).show(); },
+				open: function(event, ui) { $(".lg_ui-dialog-titlebar-close", ui.dialog | ui).show(); },
 			});
 		}
 	}
@@ -112,11 +112,11 @@ var UILG = (function (my) {
 	 */
 	my.dialogoEspera = function() {
 		$(window).resize(function(){
-			$("#panelEspera").center(false, false, true);
+			$("#lg_panelEspera").center(false, false, true);
 		}); 
 		
-		$("#panelEspera").center(false, false, true);		
-		$("#panelEspera").show();
+		$("#lg_panelEspera").center(false, false, true);		
+		$("#lg_panelEspera").show();
 	}
 	
 	

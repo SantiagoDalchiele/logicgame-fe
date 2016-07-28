@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import uy.com.uma.comun.util.UtilJSON;
 import uy.com.uma.logicgame.api.LogicGameException;
-import uy.com.uma.logicgame.api.bean.DatosConfiguracion;
-import uy.com.uma.logicgame.api.bean.DatosIdioma;
+import uy.com.uma.logicgame.api.bean.ConfiguracionDO;
+import uy.com.uma.logicgame.api.bean.IdiomaDO;
 import uy.com.uma.logicgame.api.conf.ConfiguracionException;
 import uy.com.uma.logicgame.api.persistencia.IManejadorConfiguracion;
 import uy.com.uma.logicgame.api.persistencia.PersistenciaException;
@@ -83,10 +83,10 @@ public class GetConfiguracionAction extends JuegoAbstractAction {
 		String idUsuario = req.getSession().getAttribute(ID_PARAM_ID_USUARIO).toString();
 		
 		try {
-			DatosConfiguracion dc = manConf.getDatosConfiguracion(idUsuario);
+			ConfiguracionDO dc = manConf.getDatosConfiguracion(idUsuario);
 			StringBuffer bufIdiomas = new StringBuffer();
 			
-			for (DatosIdioma di : dc.getIdiomas()) {
+			for (IdiomaDO di : dc.getIdiomas()) {
 				bufIdiomas.append("{" + UtilJSON.getPropJSON(TAG_ID_IDIOMA) + UtilJSON.getValorJSON(di.getId()));
 				bufIdiomas.append(UtilJSON.getPropJSON(TAG_NOMBRE_IDIOMA) + UtilJSON.getValorJSON(di.getNombre()));
 				bufIdiomas.append(UtilJSON.getPropJSON(TAG_ICONO_IDIOMA) + UtilJSON.getComillasJSON(di.getIcono()) + "},");

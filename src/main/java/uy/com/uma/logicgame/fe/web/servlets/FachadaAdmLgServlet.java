@@ -27,6 +27,9 @@ import uy.com.uma.logicgame.fe.web.adm.actions.BorrarTablasAction;
 import uy.com.uma.logicgame.fe.web.adm.actions.CrearRutaXDefectoAction;
 import uy.com.uma.logicgame.fe.web.adm.actions.CrearTablasAction;
 import uy.com.uma.logicgame.fe.web.adm.actions.GetIdiomasAction;
+import uy.com.uma.logicgame.fe.web.adm.actions.GetJuegosAction;
+import uy.com.uma.logicgame.fe.web.adm.actions.GetRutasAction;
+import uy.com.uma.logicgame.fe.web.adm.actions.GetUsuariosAction;
 import uy.com.uma.logicgame.fe.web.adm.actions.LoginAction;
 
 /**
@@ -66,6 +69,9 @@ public class FachadaAdmLgServlet extends HttpServlet implements ILogicGameWebCon
 			accs.add(new CrearRutaXDefectoAction());
 			accs.add(new CrearTablasAction());
 			accs.add(new GetIdiomasAction());
+			accs.add(new GetJuegosAction());
+			accs.add(new GetRutasAction());
+			accs.add(new GetUsuariosAction());
 			accs.add(new LoginAction());			
 			
 			for (AdmAbstractAction acc : accs) {

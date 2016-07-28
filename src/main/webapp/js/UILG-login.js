@@ -125,8 +125,8 @@ var UILG = (function (my) {
 		UILG.ajaxPost (ID_REQ_LOGOUT, {}, false, null);
 		$("#lg_user").val("");
 		$("#lg_password").val("");
-		$("#panel_ui_juego").hide();
-		$("#panel_login").show();
+		$("#lg_panel_ui_juego").hide();
+		$("#lg_panel_login").show();
 		$("#lg_user").focus();
 	}
 	
@@ -146,7 +146,7 @@ var UILG = (function (my) {
 	 */
 	function procesarLogin(data) {
 		if (data.resultado == LOGIN_EXITOSO) {
-			$("#panel_login").hide();
+			$("#lg_panel_login").hide();
 			UILG.initConfiguracion();
 			
 			if (UILG.getConfiguracionOK()) {

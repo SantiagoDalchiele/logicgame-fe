@@ -70,8 +70,8 @@ var UILG = (function (my) {
 		$("#lg_reg_correo").val("");
 		$("#lg_reg_password").val("");
 		$("#lg_reg_password2").val("");
-		$("#panel_login").hide();
-		$("#panel_registro").show();
+		$("#lg_panel_login").hide();
+		$("#lg_panel_registro").show();
 	}
 	
 	
@@ -114,8 +114,8 @@ var UILG = (function (my) {
 	 * Cancela el registro de usuarios y muestra la pantalla de login
 	 */
 	my.cancelRegistro = function() {
-		$("#panel_registro").hide();
-		$("#panel_login").show();
+		$("#lg_panel_registro").hide();
+		$("#lg_panel_login").show();
 		$("#lg_user").focus();
 	}
 	
@@ -131,8 +131,8 @@ var UILG = (function (my) {
 			UILG.error(1, 367, ERROR_CORREO_EXISTENTE, '');
 		else {
 			$("#lg_user").val(data.idUsuario);
-			$("#panel_registro").hide();
-			$("#panel_login").show();
+			$("#lg_panel_registro").hide();
+			$("#lg_panel_login").show();
 			$("#lg_password").focus();
 		}
 	}

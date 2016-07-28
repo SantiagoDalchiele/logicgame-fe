@@ -1,14 +1,14 @@
-.main {
+.lg_main {
 	margin: 0 auto;
 }
 
-.ui-dialog-titlebar {
+.lg_ui-dialog-titlebar {
 	font-family: "Comic Sans MS", cursive, sans-serif;
 	font-size: 14px;
 	font-weight: bold;	
 }
 
-.noselect {
+.lg_noselect {
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
@@ -16,7 +16,7 @@
 	-ms-user-select: none;
 	user-select: none;
 }
-.noresize {
+.lg_noresize {
     resize: none;
 }
 
@@ -25,7 +25,7 @@
 	height: 32px;
 }
 
-.tabla100 {
+.lg_tabla100 {
 	width: 100%;
 }
 
@@ -83,18 +83,18 @@
 }
 
 
-#dialogoError {
+#lg_dialogoError {
 	background-color: #fde9f1;
 	font-family: "Arial";
 	font-size: 14px;
 	font-weight: bold;
 	display: none;	
 }
-#error_msg {
+#lg_error_msg {
 	color: #bf2026;
 	text-align: left;
 }
-#error_detalle_texto {
+#lg_error_detalle_texto {
 	color: #bf2026;
 	font-family: "Arial";
 	font-size: 14px;
@@ -103,7 +103,7 @@
 }
 
 
-#dialogoFinalizacion {
+#lg_dialogoFinalizacion {
 	background-color: #fcfcfc;
 	color: black;
 	font-family: "Arial";
@@ -112,22 +112,22 @@
 	display: none;
 }
 
-#panel_login, #panel_registro, #panel_ui_juego, #dialogoConfiguracion {
+#lg_panel_login, #lg_panel_registro, #lg_panel_ui_juego, #lg_dialogoConfiguracion {
 	display: none;
 }
 
-#tabla_ranking {
+#lg_tabla_ranking {
 	color: #1072cf;
 	font-family: "Comic Sans MS", cursive, sans-serif;
 	font-size: 14px;
 	font-weight: bold;
 }
 
-#panelBarraTareas {
+#lg_panelBarraTareas {
 	margin: 10px;	
 }
 
-#panelEspera {
+#lg_panelEspera {
 	opacity: 0.9;
 	z-index: 1;   
 	position: absolute;
@@ -137,41 +137,41 @@
 
 /** --------------------------------------------------------------------- */
 
-#panel_ui_juego {
+#lg_panel_ui_juego {
 	display: table;
 } 
 
-#rankingDiv, #juegoDiv, #barraTareasDiv {
+#lg_rankingDiv, #lg_juegoDiv, #lg_barraTareasDiv {
 	display: table-cell;
 }
 
-#rankingDiv, #barraTareasDiv {
+#lg_rankingDiv, #lg_barraTareasDiv {
 	vertical-align: bottom; 
 	background: #fcfcfc; 
 }
 
-#rankingDiv {
+#lg_rankingDiv {
 	margin: 2px;
 }
 
-.celdaBarraTareas {
+.lg_celdaBarraTareas {
 	padding: 4px;
 }
 
 @media screen and (max-width: 768px) {
-	#panel_ui_juego {
+	#lg_panel_ui_juego {
 		display: table;
 	}
 	
-	#juegoDiv {
+	#lg_juegoDiv {
 		display: table-header-group;		
 	}
 	
-	#rankingDiv {
+	#lg_rankingDiv {
 		display: table-footer-group;
 	}
 	
-	.celdaBarraTareas {
+	.lg_celdaBarraTareas {
 		float: left;
 	}
 }
