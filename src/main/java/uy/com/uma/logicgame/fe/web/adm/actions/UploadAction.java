@@ -12,7 +12,6 @@ import javax.servlet.http.Part;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import uy.com.uma.comun.util.UtilFormato;
 import uy.com.uma.comun.util.UtilIO;
 import uy.com.uma.logicgame.api.LogicGameException;
 import uy.com.uma.logicgame.api.bean.IJSONObject;
@@ -33,7 +32,6 @@ public class UploadAction extends GetDatosAbstractAction {
 	
 	/** Constantes para los parametros de la página */
 	private static final String PARAM_FILE = "file";
-	private static final String PARAM_IDIOMA = "idioma";
 	
 	/** Identificador de la coleccion a retornar */ 
 	private static final String TAG_COLECCION = "archivos";
@@ -41,7 +39,6 @@ public class UploadAction extends GetDatosAbstractAction {
 	
 	/** Atributos */
 	private Part filePart;
-	private String idioma;
 	
 	
 	@Override
@@ -62,7 +59,6 @@ public class UploadAction extends GetDatosAbstractAction {
 	@Override
 	public void perform(HttpServletRequest req, PrintWriter out) throws ServletException, IOException {
 		this.filePart = req.getPart(PARAM_FILE);
-		this.idioma = req.getParameter(PARAM_IDIOMA);
 		super.perform(req, out);
 	}
 
@@ -76,17 +72,13 @@ public class UploadAction extends GetDatosAbstractAction {
 												IllegalAccessException, ClassNotFoundException, ConfiguracionException {
 	    final String fileName = filePart.getSubmittedFileName();
 	    final String extArch = UtilIO.extFile(fileName);
-	    log.debug("Idioma=" + idioma + ", Extension=" + extArch + ", Archivo=" + fileName);	    
+	    log.debug("Extension=" + extArch + ", Archivo=" + fileName);	    
 
     	if (extArch.equalsIgnoreCase("zip")) {
 	        ICargadorRecursos loader = PersistenciaFactory.getInstancia().getCargadorRecursos();
 	        
 	        try {
-				loader.setInputStream(filePart.getInputStream());
-				
-				if (!UtilFormato.esNulo(idioma))
-		        	loader.setIdioma(idioma);
-		        
+				loader.setInputStream(filePart.getInputStream());				
 		        loader.cargar();
 		        Collection<IJSONObject> col = new ArrayList<IJSONObject>();
 		        
