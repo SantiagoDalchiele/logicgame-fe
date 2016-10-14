@@ -21,6 +21,7 @@ var AdmLG = (function() {
 	var ID_REQ_GET_JUEGOS			= "getJuegos.admdo";
 	var ID_REQ_GET_RUTAS			= "getRutas.admdo";
 	var ID_REQ_GET_USUARIOS			= "getUsuarios.admdo";
+	var ID_REQ_PARCHE_TOKEN			= "parche01.admdo";
 	
 	
 	/** Ruta de la página principal de administración del sistema */
@@ -77,6 +78,10 @@ var AdmLG = (function() {
 		ajaxPost(ID_REQ_CREAR_RUTA_X_DEFECTO, {}, false, procesarAdmBaseDatos);
 	}
 	
+	my.doParche01 = function() {		
+		ajaxPost(ID_REQ_PARCHE_TOKEN, {}, false, procesarAdmBaseDatos);
+	}
+	
 	my.doGetIdiomas = function() {		
 		ajaxPost(ID_REQ_GET_IDIOMAS, {}, false, procesarGetIdiomas);
 	}
@@ -94,6 +99,7 @@ var AdmLG = (function() {
 		ajaxPost(ID_REQ_GET_USUARIOS, {}, false, procesarGetUsuarios);
 	}
 	
+
 	
 	/**
 	 * Mostrar/Ocultar paneles
@@ -289,8 +295,9 @@ var AdmLG = (function() {
 			var dataSet = [];
 			
 			for (i in data.usuarios) {
-				var usuario = data.usuarios[i];
-				var fila = [usuario.id, usuario.alias, usuario.correo, usuario.logeado, usuario.ruta, usuario.nivel, usuario.idioma, usuario.estado];
+				var usuario = data.usuarios[i];				
+				var estado = usuario.estado.map( function (elem) { return (elem == null) ? "" : elem.idCelda + ":" + elem.valor });
+				var fila = [usuario.id, usuario.alias, usuario.correo, usuario.logeado, usuario.ruta, usuario.nivel, usuario.idioma, estado];
 				dataSet.push(fila);
 			}
 			

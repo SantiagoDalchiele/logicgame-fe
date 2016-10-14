@@ -28,6 +28,12 @@ abstract class GetDatosAbstractAction extends AdmAbstractAction {
 	
 	
 	
+	@Override
+	public boolean usaConexionBD() {
+		return true;
+	}
+	
+	
 	/**
 	 * Retorna la colección de datos
 	 */

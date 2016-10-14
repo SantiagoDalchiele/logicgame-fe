@@ -12,7 +12,11 @@ var UILG = (function (my) {
 	 * Nombre de los requerimientos enviados por AJAX
 	 * @see uy.com.uma.logicgame.be.web.actions.JuegoAbstractAction 
 	 */
-	var ID_REQ_REGISTRO = "registro.do";
+	var ID_REQ_REGISTRO		= "registro.do";
+	var ID_REQ_RESET_CLAVE	= "resetClave.do";
+	
+	/** Ruta de la página principal del sistema */
+	var LG_PAGE_PATH = "lg.html";
 	
 	/** 
 	 * Constantes que enumeran el resultado de la función de registro de usuarios
@@ -48,6 +52,9 @@ var UILG = (function (my) {
 			$('#lg_reg_password2').prop('placeholder', t('ui.registro.confirma'));
 			$('#lg_btt_cancel_registro').prop('value', t('ui.botonCancelar'));
 			$('#lg_btt_registro').prop('value', t('ui.registro.botonRegistro'));
+			$('#lg_reset_password').prop('placeholder', t('ui.registro.clave'));
+			$('#lg_reset_password2').prop('placeholder', t('ui.registro.confirma'));
+			$('#lg_btt_doResetClave').prop('value', t('ui.resetClave.botonCambiar'));
 	
 			ERROR_USUARIO_REGISTRO_NULO	= t('ui.registro.errorUsuarioNulo');
 			ERROR_USUARIO_INCORRECTO	= t('ui.registro.errorUsuarioIncorrecto');
@@ -110,6 +117,8 @@ var UILG = (function (my) {
 		}
 	}
 	
+	
+	
 	/**
 	 * Cancela el registro de usuarios y muestra la pantalla de login
 	 */
@@ -120,6 +129,27 @@ var UILG = (function (my) {
 	}
 	
 	
+	
+	/**
+	 * Envia el requerimiento de cambiar la clave según el token previamente enviado por correo al usuario
+	 */
+	my.doResetClave = function() {
+		var clave = $("#lg_reset_password").val();
+		var confClave = $("#lg_reset_password2").val();
+		
+		if ((clave == null) || (clave.length < 5))
+			UILG.error (1, 194, ERROR_CLAVE_CORTA, '');
+		else if (clave != confClave)
+			UILG.error (1, 196, ERROR_CONFIRMACION_CLAVE, '');
+		else if (!UILG.PATRON_CLAVES().test(clave))
+			UILG.error (1, 101, ERROR_CLAVE_INCORRECTA, '');
+		else {
+			var parameters = { clave: clave };
+			UILG.ajaxPost (ID_REQ_RESET_CLAVE, parameters, false, procesarResetClave);
+		}
+	}	
+	
+
 	
 	/**
 	 * Procesa el resultado del registro del usuario
@@ -137,6 +167,14 @@ var UILG = (function (my) {
 		}
 	}
 	
+	
+	
+	/**
+	 * Redirige la página al login
+	 */
+	function procesarResetClave() {
+		window.location.href = UtilLG.getPageUrl() + LG_PAGE_PATH;
+	}
 	
 	
 	/** Definición de métodos públicos */

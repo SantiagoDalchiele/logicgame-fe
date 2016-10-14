@@ -31,6 +31,7 @@ import uy.com.uma.logicgame.fe.web.adm.actions.GetJuegosAction;
 import uy.com.uma.logicgame.fe.web.adm.actions.GetRutasAction;
 import uy.com.uma.logicgame.fe.web.adm.actions.GetUsuariosAction;
 import uy.com.uma.logicgame.fe.web.adm.actions.LoginAction;
+import uy.com.uma.logicgame.fe.web.adm.actions.Parche01Action;
 
 /**
  * Atiende los eventos producidos por la interface web de administracion (sus requerimientos AJAX)
@@ -51,6 +52,9 @@ public class FachadaAdmLgServlet extends HttpServlet implements ILogicGameWebCon
 	/** Mapeo de acciones */
 	private Map<String, AdmAbstractAction> acciones = new HashMap<String, AdmAbstractAction>();
 	
+	/** Indica si esta inicializada la conexión a la base de datos */
+	private boolean bdInicializada = false;
+	
 	
 	
 	/**
@@ -62,7 +66,6 @@ public class FachadaAdmLgServlet extends HttpServlet implements ILogicGameWebCon
 		
 		try {
 			configuracion = Configuracion.getInstancia();
-			initDB();
 			List<AdmAbstractAction> accs = new ArrayList<AdmAbstractAction>();
 			accs.add(new BorrarDatosAction());
 			accs.add(new BorrarTablasAction());
@@ -73,6 +76,7 @@ public class FachadaAdmLgServlet extends HttpServlet implements ILogicGameWebCon
 			accs.add(new GetRutasAction());
 			accs.add(new GetUsuariosAction());
 			accs.add(new LoginAction());			
+			accs.add(new Parche01Action());
 			
 			for (AdmAbstractAction acc : accs) {
 				acc.setConfiguracion(configuracion);
@@ -91,7 +95,8 @@ public class FachadaAdmLgServlet extends HttpServlet implements ILogicGameWebCon
 	 */
 	protected void initDB() throws ServletException {
 		try {
-			PersistenciaFactory.getInstancia().getManejadorSesiones().reset(configuracion.getAdmDBUser(), configuracion.getAdmDBPassword());
+			PersistenciaFactory.getInstancia().getManejadorSesiones().reset();
+			bdInicializada = true;
 		} catch (Exception e) {
 			throw new ServletException("Error al configurar la conexion a la base de datos", e);
 		}
@@ -122,10 +127,15 @@ public class FachadaAdmLgServlet extends HttpServlet implements ILogicGameWebCon
 			else {
 				UtilAJAX.initAjaxResponse(response);
 				log.debug("Procesando el request: " + reqUri + ", la peticion es del metodo: " + peticion);
-				AdmAbstractAction accion = acciones.get(peticion);			
+				AdmAbstractAction accion = acciones.get(peticion);
+				
+				if (accion.usaConexionBD() && (!bdInicializada))
+					initDB();
+				
 				accion.perform(req, response.getWriter());
 			}
-		} catch (Exception e) {			
+		} catch (Exception e) {
+			e.printStackTrace();
 			log.fatal("Error al procesar la solicitud de administracion logicgame", e);
 			response.getWriter().write(JuegoAbstractAction.getErrorJSON(e));		
 		}

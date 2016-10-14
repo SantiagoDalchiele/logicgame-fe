@@ -16,7 +16,9 @@
   			"errorUsuarioIncorrecto": "Invalid user or e-mail",
   			"errorClaveNula": "Invalid password",
   			"errorUsuarioInexistente": "No user with that id or e-mail",
-  			"errorClaveIncorrecta": "Invalid user/password"
+  			"errorClaveIncorrecta": "Invalid user/password",
+  			"tituloDialogoResetClave": "Restore password",
+  			"textoDialogoResetClave": "It was sent an email to the address registered in order to restore the password"
   		},
   	"registro": {
   			"usuario": "User",
@@ -32,6 +34,9 @@
   			"errorConfirmacionClave": "Wrong confirmation password",
   			"errorUsuarioExistente": "User already registered with this id",
   			"errorCorreoExistente": "User already registered with this e-mail"
+  		},
+  	"resetClave": {
+  			"botonCambiar": "Change"
   		},
   	"titulosDialogos": {
   			"error": "Error",

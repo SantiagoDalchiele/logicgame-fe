@@ -31,13 +31,15 @@
 <!-- Botones de manejo de la estructura de la base de datos -->
 <table id="lg.adm.menu.estructura">
 	<tr>
-		<td><input type="button" id="lg_btt_crear_tablas" value="Crear Tablas" onclick="AdmLG.doCrearTablas()"/></td>
+		<td><input type="button" id="lg_btt_crear_tablas" value="Crear Tablas" onclick="AdmLG.doCrearTablas()"/></td>		
 		<td width="200"/>
 		<td><input type="button" id="lg_btt_crear_ruta_x_defecto" value="Crear Ruta por Defecto" onclick="AdmLG.doCrearRutaXDefecto()"/></td>
 		<td width="200"/>
 		<td><input type="button" id="lg_btt_borrar_datos" value="Borrar Datos" onclick="AdmLG.doBorrarDatos()"/></td>
 		<td width="200"/>
 		<td><input type="button" id="lg_btt_borrar_tablas" value="Borrar Tablas" onclick="AdmLG.doBorrarTablas()"/></td>
+		<td width="200"/>
+		<td><input type="button" id="lg_btt_parche01" value="Parche atributos token" onclick="AdmLG.doParche01()"/></td>
 	</tr>
 </table>
 <!-- Upload de archivo de recursos del sistema -->

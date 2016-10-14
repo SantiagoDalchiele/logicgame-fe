@@ -45,6 +45,7 @@ var UILG = (function (my) {
 	 */
 	my.ocultarDialogos = function() {
 		$("#lg_panelEspera").hide();
+		$("#lg_panelProcesando").hide();
 	}
 	
 	
@@ -117,6 +118,20 @@ var UILG = (function (my) {
 		
 		$("#lg_panelEspera").center(false, false, true);		
 		$("#lg_panelEspera").show();
+	}
+	
+	
+	
+	/**
+	 * Muestra el dialogo de procesando
+	 */
+	my.dialogoProcesando = function() {
+		$(window).resize(function(){
+			$("#lg_panelProcesando").center(false, false, true);
+		}); 
+		
+		$("#lg_panelProcesando").center(false, false, true);		
+		$("#lg_panelProcesando").show();
 	}
 	
 	

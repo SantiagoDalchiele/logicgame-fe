@@ -657,18 +657,20 @@ var UILG = (function (my) {
 	 * Setea el valor nuevo/viejo en la matriz, actualiza la imagen y manda setear el dato en el servidor
 	 */
 	function hacerDeshacer (dato) {
-		matriz[dato.idCelda] = dato.valor;
-		var imagen = document.getElementById(dato.idCelda);
-		
-		if (dato.valor == ACCION_EN_BLANCO) {
-			imagen.src = IMG_ACCION_BLANCO;
-		} else if (dato.valor == ACCION_NEGACION) {
-			imagen.src = IMG_ACCION_NEGACION;
-		} else {
-			imagen.src = IMG_ACCION_AFIRMACION;
+		if (dato != null) {
+			matriz[dato.idCelda] = dato.valor;
+			var imagen = document.getElementById(dato.idCelda);
+			
+			if (dato.valor == ACCION_EN_BLANCO) {
+				imagen.src = IMG_ACCION_BLANCO;
+			} else if (dato.valor == ACCION_NEGACION) {
+				imagen.src = IMG_ACCION_NEGACION;
+			} else {
+				imagen.src = IMG_ACCION_AFIRMACION;
+			}
+			
+			setValor(dato);
 		}
-		
-		setValor(dato);
 	}	
 
 	

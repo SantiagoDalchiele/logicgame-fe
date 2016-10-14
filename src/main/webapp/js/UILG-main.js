@@ -125,7 +125,7 @@ var MainLG = (function () {
 	
 	
 	/**
-	 * Pantalla de registro
+	 * Pantalla de registro y cambio de clave
 	 */
 	/** @see UILG-registro.js */
 	my.registrarse = function() { UILG.registrarse(); }
@@ -135,6 +135,9 @@ var MainLG = (function () {
 	
 	/** @see UILG-registro.js */
 	my.doRegistro = function() { UILG.doRegistro(); }
+	
+	/** @see UILG-registro.js */
+	my.doResetClave = function() { UILG.doResetClave(); }
 	
 	
 	

@@ -16,7 +16,9 @@
   			"errorUsuarioIncorrecto": "Usuario o e-mail incorrecto",
   			"errorClaveNula": "Ingrese su clave",
   			"errorUsuarioInexistente": "No existe un usuario con ese identificador o correo",
-  			"errorClaveIncorrecta": "Usuario/clave incorrecta"
+  			"errorClaveIncorrecta": "Usuario/clave incorrecta",
+  			"tituloDialogoResetClave": "Restaurar clave",
+  			"textoDialogoResetClave": "Se ha enviado un correo a la dirección registrada para poder restaurar la clave de acceso"
   		},
   	"registro": {
   			"usuario": "Usuario",
@@ -32,6 +34,9 @@
   			"errorConfirmacionClave": "Error en el ingreso de la confirmación de la clave",
   			"errorUsuarioExistente": "Ya existe un usuario registrado con este identificador",
   			"errorCorreoExistente": "Ya existe un usuario registrado con este correo"
+  		},
+  	"resetClave": {
+  			"botonCambiar": "Cambiar"
   		},
   	"titulosDialogos": {
   			"error": "Error",

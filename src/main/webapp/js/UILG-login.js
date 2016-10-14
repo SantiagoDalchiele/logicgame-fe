@@ -1,7 +1,7 @@
 /**
  * Define la logica de manejo de login en el sistema
  * 
- * @see uy.com.uma.logicgame.be.web.actions.JuegoAbstractAction
+ * @see uy.com.uma.logicgame.fe.web.actions.JuegoAbstractAction
  * @see uy.com.uma.logicgame.api.persistencia.IManejadorSeguridad
  * @see UILG-ajax.js, UILG-configuracion.js, UILG-dialogos.js, UILG-main.js
  * @see i18next.js, jquery.js
@@ -10,11 +10,12 @@ var UILG = (function (my) {
 	
 	/** 
 	 * Nombre de los requerimientos enviados por AJAX
-	 * @see uy.com.uma.logicgame.be.web.actions.JuegoAbstractAction 
+	 * @see uy.com.uma.logicgame.fe.web.actions.JuegoAbstractAction 
 	 */
 	var ID_REQ_LOGIN = "login.do";
 	var ID_REQ_LOGOUT = "logout.do";
 	var ID_REQ_ESTA_LOGEADO = "estaLogeado.do";
+	var ID_REQ_ENVIAR_TOKEN = "enviarToken.do";
 	
 	/** Mensajes parametrizados por lenguaje */
 	var ERROR_USUARIO_NULO;
@@ -22,6 +23,8 @@ var UILG = (function (my) {
 	var ERROR_CLAVE_NULA;
 	var ERROR_USUARIO_INEXISTENTE;
 	var ERROR_CLAVE_INCORRECTA;
+	var TITULO_DIALOGO_RESET_CLAVE;
+	var TEXTO_DIALOGO_RESET_CLAVE;
 	
 	/** 
 	 * Valores de resultado del login
@@ -58,6 +61,8 @@ var UILG = (function (my) {
 			ERROR_CLAVE_NULA			= t('ui.login.errorClaveNula');
 			ERROR_USUARIO_INEXISTENTE	= t('ui.login.errorUsuarioInexistente');
 			ERROR_CLAVE_INCORRECTA		= t('ui.login.errorClaveIncorrecta');
+			TITULO_DIALOGO_RESET_CLAVE	= t('ui.login.tituloDialogoResetClave');
+			TEXTO_DIALOGO_RESET_CLAVE	= t('ui.login.textoDialogoResetClave');
     	});
 		
 		$("#lg_user").val("");
@@ -109,10 +114,20 @@ var UILG = (function (my) {
 	
 	
 	/**
-	 * TODO implementar
+	 * Controla que ingrese el usuario, en caso exitoso envia la solicitud de envio de token
 	 */
 	my.resetClave = function() {
+		var user = $("#lg_user").val();		
 		
+		if ((user == null) || (user == ''))
+			UILG.error (1, 27, ERROR_USUARIO_NULO, '');
+		else if ((!UILG.PATRON_IDS().test(user)) && (!UILG.PATRON_EMAILS().test(user)))
+			UILG.error (1, 93, ERROR_USUARIO_INCORRECTO);
+		else {
+			UILG.dialogoProcesando();
+			var parameters = { idUsuario: user };
+			UILG.ajaxPost (ID_REQ_ENVIAR_TOKEN, parameters, false, procesarEnvioToken);
+		}
 	}
 	
 	
@@ -159,6 +174,22 @@ var UILG = (function (my) {
 			UILG.error (1, 33, ERROR_USUARIO_INEXISTENTE, '');
 		else if (data.resultado == LOGIN_CLAVE_INCORRECTA)	
 			UILG.error (1, 34, ERROR_CLAVE_INCORRECTA, '');
+	}
+	
+	
+	
+	/**
+	 * Muestra un dialogo de información que se envio un correo con información para restaurar la clave de acceso
+	 */
+	function procesarEnvioToken (data) {
+		$("#lg_panelProcesando").hide();
+		
+		if (data.resultado == LOGIN_EXITOSO) {
+			UILG.dialogo (TITULO_DIALOGO_RESET_CLAVE, TEXTO_DIALOGO_RESET_CLAVE, true, null, false)
+		} else if (data.resultado == LOGIN_USUARIO_INEXISTENTE)
+			UILG.error (1, 33, ERROR_USUARIO_INEXISTENTE, '');
+		else
+			UILG.error (1, 190, 'Error inesperado', '');
 	}
 	
 	

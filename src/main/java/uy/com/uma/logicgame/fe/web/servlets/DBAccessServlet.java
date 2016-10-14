@@ -25,28 +25,6 @@ abstract class DBAccessServlet extends HttpServlet implements IConfiguracionCons
 	/** Configuración del sistema */
 	protected Configuracion configuracion;
 	
-	/** Usuario y clave de acceso a la base de datos */
-	protected String usuario;
-	protected String clave;
-	
-	
-	
-	/**
-	 * Metodos de acceso	
-	 */
-	public String getUsuario() {
-		return usuario;
-	}
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-	public String getClave() {
-		return clave;
-	}
-	public void setClave(String clave) {
-		this.clave = clave;
-	}
-
 	
 	
 	/**
@@ -96,7 +74,7 @@ abstract class DBAccessServlet extends HttpServlet implements IConfiguracionCons
 	 */
 	protected void initDB() throws ServletException {
 		try {
-			PersistenciaFactory.getInstancia().getManejadorSesiones().reset(usuario, clave);
+			PersistenciaFactory.getInstancia().getManejadorSesiones().reset();
 		} catch (Exception e) {
 			throw new ServletException("Error al configurar la conexion a la base de datos", e);
 		}

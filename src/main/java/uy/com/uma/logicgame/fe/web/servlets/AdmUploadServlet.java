@@ -32,8 +32,6 @@ public class AdmUploadServlet extends DBAccessServlet implements ILogicGameWebCo
 	@Override
 	public void init() throws ServletException {
 		initConfiguracion();		
-		setUsuario(configuracion.getAdmDBUser());
-		setClave(configuracion.getAdmDBPassword());
 		uploadAction.setConfiguracion(configuracion);
 		super.init();
 	}

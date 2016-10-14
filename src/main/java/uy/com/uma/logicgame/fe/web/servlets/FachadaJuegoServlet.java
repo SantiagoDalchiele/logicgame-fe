@@ -22,17 +22,21 @@ import uy.com.uma.logicgame.api.conf.ConfiguracionException;
 import uy.com.uma.logicgame.api.persistencia.PersistenciaFactory;
 import uy.com.uma.logicgame.fe.web.BackgroundThread;
 import uy.com.uma.logicgame.fe.web.ILogicGameWebConstants;
+import uy.com.uma.logicgame.fe.web.actions.EnviarTokenAction;
 import uy.com.uma.logicgame.fe.web.actions.EstaLogeadoAction;
 import uy.com.uma.logicgame.fe.web.actions.FinJuegoAction;
 import uy.com.uma.logicgame.fe.web.actions.GetConfiguracionAction;
 import uy.com.uma.logicgame.fe.web.actions.GetJuegoAction;
 import uy.com.uma.logicgame.fe.web.actions.GetRankingAction;
 import uy.com.uma.logicgame.fe.web.actions.GrabarJuegoAction;
+import uy.com.uma.logicgame.fe.web.actions.IResponseAction;
 import uy.com.uma.logicgame.fe.web.actions.JuegoAbstractAction;
 import uy.com.uma.logicgame.fe.web.actions.LoginAction;
 import uy.com.uma.logicgame.fe.web.actions.LogoutAction;
+import uy.com.uma.logicgame.fe.web.actions.RecibirTokenAction;
 import uy.com.uma.logicgame.fe.web.actions.RegistroAction;
 import uy.com.uma.logicgame.fe.web.actions.ReiniciarJuegoAction;
+import uy.com.uma.logicgame.fe.web.actions.ResetClaveAction;
 import uy.com.uma.logicgame.fe.web.actions.SetConfiguracionAction;
 import uy.com.uma.logicgame.fe.web.actions.SetValorAction;
 
@@ -60,13 +64,12 @@ public class FachadaJuegoServlet extends DBAccessServlet implements ILogicGameWe
 	@Override
 	public void init() throws ServletException {
 		initConfiguracion();
-		setUsuario(configuracion.getWebDBUser());
-		setClave(configuracion.getWebDBPassword());
 		super.init();		
 		String path = super.getServletContext().getRealPath("");
 		List<JuegoAbstractAction> accs = new ArrayList<JuegoAbstractAction>();
 		
 		try {
+			accs.add(new EnviarTokenAction());
 			accs.add(new EstaLogeadoAction());
 			accs.add(new FinJuegoAction());
 			accs.add(new GetConfiguracionAction());
@@ -75,8 +78,10 @@ public class FachadaJuegoServlet extends DBAccessServlet implements ILogicGameWe
 			accs.add(new GrabarJuegoAction());
 			accs.add(new LoginAction());
 			accs.add(new LogoutAction());
+			accs.add(new RecibirTokenAction());
 			accs.add(new RegistroAction());
 			accs.add(new ReiniciarJuegoAction());
+			accs.add(new ResetClaveAction());
 			accs.add(new SetConfiguracionAction());
 			accs.add(new SetValorAction());
 		} catch (LogicGameException e) {
@@ -118,8 +123,12 @@ public class FachadaJuegoServlet extends DBAccessServlet implements ILogicGameWe
 				log.debug("Procesando el request: " + reqUri + ", la peticion es del metodo: " + peticion);				
 				JuegoAbstractAction accion = acciones.get(peticion); 
 				
-				if (accion.sessionOK(request, out))
+				if (accion.sessionOK(request, out)) {
+					if (accion instanceof IResponseAction)
+						((IResponseAction) accion).setServletResponse(response);
+					
 					accion.perform(request, out);
+				}
 			}
 		} catch (Exception e) {			
 			log.fatal("Error al procesar la solicitud del juego", e);

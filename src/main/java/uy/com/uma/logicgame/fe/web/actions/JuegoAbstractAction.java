@@ -41,18 +41,24 @@ public abstract class JuegoAbstractAction extends ActionsHelper {
 	protected static final String ID_REQ_GET_RANKING = "getRanking.do";
 	protected static final String ID_REQ_REINICIAR_JUEGO = "reiniciarJuego.do";
 	protected static final String ID_REQ_GRABAR_JUEGO = "grabarJuego.do";
+	protected static final String ID_REQ_ENVIAR_TOKEN = "enviarToken.do";
+	protected static final String ID_REQ_RECIBIR_TOKEN = "recibirToken.do";
+	protected static final String ID_REQ_RESET_CLAVE = "resetClave.do";
+	
 	
 	/** Constantes que definen el nombre de los parámetros */
 	public static final String ID_PARAM_ID_USUARIO = "idUsuario";
 	public static final String ID_PARAM_CLAVE = "clave";
 	public static final String ID_PARAM_ID_CELDA = "idCelda";
 	public static final String ID_PARAM_VALOR = "valor";	
+	public static final String ID_PARAM_TOKEN = "token";
 	protected static final String ID_PARAM_CORREO = "correo";
 	protected static final String ID_PARAM_RESULTADO = "resultado";
 	protected static final String ID_PARAM_ID_JUEGO = "idJuego";
 	protected static final String ID_PARAM_ESTADO = "estado";
 	protected static final String ID_PARAM_IDIOMA = "lang";	
 	protected static final String ID_OBJ_MATRIZ_JUEGO = "matriz.juego";
+	protected static final String ID_USUARIO_TOKEN = "usuario.token";
 	
 	/** Configuración del sistema */
 	protected Configuracion configuracion;

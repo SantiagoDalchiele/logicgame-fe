@@ -33,6 +33,12 @@ public class GetJuegosAction extends AdmAbstractAction {
 	public String getName() {
 		return ID_REQ_GET_JUEGOS;
 	}
+	
+	@Override
+	public boolean usaConexionBD() {
+		return true;
+	}
+
 
 	
 	/**

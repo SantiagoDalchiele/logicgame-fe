@@ -29,6 +29,7 @@ public abstract class AdmAbstractAction extends ActionsHelper implements ILogicG
 	protected static final String ID_REQ_GET_JUEGOS = "getJuegos.admdo";
 	protected static final String ID_REQ_GET_RUTAS = "getRutas.admdo";
 	protected static final String ID_REQ_GET_USUARIOS = "getUsuarios.admdo";
+	protected static final String ID_REQ_PARCHE_TOKEN = "parche01.admdo";
 	
 	
 	/** Configuración del sistema */
@@ -41,6 +42,15 @@ public abstract class AdmAbstractAction extends ActionsHelper implements ILogicG
 	
 	/** Ejecuta la acción */
 	public abstract void perform (HttpServletRequest req, PrintWriter out) throws ServletException, IOException;
+	
+	
+	
+	/**
+	 * Retorna TRUE si hace uso de la conexión a base de datos
+	 */
+	public boolean usaConexionBD() {
+		return false;
+	}
 	
 	
 	
