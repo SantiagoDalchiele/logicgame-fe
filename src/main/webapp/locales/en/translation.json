@@ -51,6 +51,8 @@
   			"botonFinalizar": "Press here if you consider that you solved the game!",
   			"botonPrevio": "Shows the previous tip",
   			"botonSiguiente": "Shows the next tip",
+  			"botonPistasCompleto": "Shows all tips of the game",
+  			"botonPistasControl": "Shows tips one to one",
   			"botonGrabar": "Saves the current state of the game",
   			"botonDeshacer": "Undo the last mark made",
   			"botonRehacer": "Restarts the last mark undone",

@@ -67,27 +67,31 @@
 		<div id="lg_panel_ui_juego">
 		
 			<!-- Ranking -->
-			<!-- <td style="vertical-align:bottom; background:#fcfcfc; margin:2px;">  -->
 			<div id="lg_rankingDiv">					
 				<div id="lg_ranking_panel"><table id="lg_tabla_ranking"></table></div>
 				<div style="height:30px"></div>
 				<img id="lg_ranking_button" src="img/onoff.png" class="lg_lgui-icono" onclick="MainLG.toggleRanking()"/>
-			<!-- </td> -->
 			</div>
 			
 			<!-- Juego en si -->
-			<!--  <td>  -->
 			<div id="lg_juegoDiv">
 				<table class="lg_juego-tabla lg_juego-tabla-con-imagen lg_juego-fuente-defecto">
-					<tr><td><div id="lg_nivel_juego"></div></td><td colspan=2 style="text-align:center"><div id="lg_titulo_juego"></div></td></tr>
-					<tr><td colspan=3><table class="lg_juego-tabla" id="lg_tabla_juego"></table></td>	</tr>
-					<tr>
-						<td width="32px"><img id="lg_previo" onclick="MainLG.pistaAnterior()"></td>
-						<td align="center"><textarea id="lg_pista" readonly class="lg_juego-pista lg_noresize lg_noselect lg_juego-fuente-defecto"></textarea></td>
-						<td width="32px"><img id="lg_siguiente" onclick="MainLG.pistaSiguiente()"></td>
-					</tr>
+					<tr><td><div id="lg_nivel_juego" class="lg_celdaXFila"></div><div id="lg_titulo_juego" class="lg_celdaXFila"></div></td></tr>
+					<tr><td><table class="lg_juego-tabla" id="lg_tabla_juego"></table></td></tr>
+					<tr><td><div id="lg_panelInfPistas">
+						<div class="lg_celdaXFila" style="width:32px;vertical-align:top"><img id="lg_previo" onclick="MainLG.pistaAnterior()"></div>
+						<div class="lg_celdaXFila" style="width:80%"><textarea id="lg_pista" readonly class="lg_juego-pista lg_noresize lg_noselect lg_juego-fuente-defecto"></textarea></div>
+						<div class="lg_celdaXFila" style="width:32px;vertical-align:top"><img id="lg_siguiente" onclick="MainLG.pistaSiguiente()"></div>
+						<div class="lg_centrado"><img id="lg_showSupPistasBtt" src="img/pistas-lista.png" class="lg_lgui-icono" onclick="MainLG.showSupPistas()"/></div>
+					</div></td></tr>
 				</table>					
-			<!-- </td>  -->
+			</div>
+			
+			<!-- Panel con todas las pistas -->
+			<div id="lg_panelSupPistas">
+				<table id="lg_tablaPistas" class="lg_juego-fuente-defecto"></table>
+				<div style="height:30px"></div>
+				<div class="lg_centrado"><img id="lg_showInfPistasBtt" src="img/pistas-control.png" class="lg_lgui-icono" onclick="MainLG.showInfPistas()"/></div>
 			</div>
 			
 			<!-- Barra de tareas -->

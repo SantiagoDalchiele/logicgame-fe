@@ -50,6 +50,7 @@ var MainLG = (function () {
 	 */
 	my.init = function() {
 		$("#lg_panel_ui_juego").hide();
+		$("#lg_panelSupPistas").hide();
 		UILG.initConfiguracion();
 		UILG.initLogin();
 		UILG.initRegistro();	
@@ -149,6 +150,12 @@ var MainLG = (function () {
 	
 	/** @see UILG-pista.js */
 	my.pistaSiguiente = function() { UILG.pistaSiguiente(); }
+	
+	/** @see UILG-pista.js */
+	my.showSupPistas = function() { UILG.showSupPistas(); }
+	
+	/** @see UILG-pista.js */
+	my.showInfPistas = function() { UILG.showInfPistas(); }
 	
 	
 	

@@ -30,7 +30,20 @@ var UILG = (function (my) {
 	 */
 	my.initPistas = function (data) {
 		pistas = data;
-		my.reiniciarPistas();
+		my.reiniciarPistas();		
+		$("#lg_tablaPistas").empty();
+		var tbl = document.getElementById("lg_tablaPistas");
+		var cont = 1;
+		
+		for (i in pistas) {
+			var pista = pistas[i];
+			var row = tbl.insertRow(-1);
+			var celda = row.insertCell(-1);			
+			celda.innerHTML = cont;
+			celda = row.insertCell(-1);
+			celda.innerHTML = pista;
+			cont++;
+		}
 	}
 	
 	
@@ -42,6 +55,8 @@ var UILG = (function (my) {
 		i18n.init(UILG.getLenguaje(), function(err, t) {
 			$("#lg_previo").prop('title', t("ui.tooltips.botonPrevio"));
 			$("#lg_siguiente").prop('title', t("ui.tooltips.botonSiguiente"));			
+			$("#lg_showSupPistasBtt").prop('title', t("ui.tooltips.botonPistasCompleto"));
+			$("#lg_showInfPistasBtt").prop('title', t("ui.tooltips.botonPistasControl"));
     	});
 	}
 	
@@ -77,6 +92,26 @@ var UILG = (function (my) {
 			pistaSel++;
 			setPista();
 		}
+	}
+	
+	
+	
+	/**
+	 * Muestra el panel con todas las pistas del juego
+	 */
+	my.showSupPistas = function() {
+		$("#lg_panelInfPistas").hide();
+		$("#lg_panelSupPistas").show();
+	}
+	
+	
+	
+	/**
+	 * Muestra el panel con el control que despliega las pistas del juego
+	 */
+	my.showInfPistas = function() {
+		$("#lg_panelSupPistas").hide();
+		$("#lg_panelInfPistas").show();
 	}
 	
 	

@@ -51,6 +51,8 @@
   			"botonFinalizar": "Oprime aquí si consideras que resolviste el juego!",
   			"botonPrevio": "Muestra la pista anterior",
   			"botonSiguiente": "Muestra la siguiente pista",
+  			"botonPistasCompleto": "Muestra todas las pistas del juego",
+  			"botonPistasControl": "Muestra las pistas una a una",
   			"botonGrabar": "Guarda el estado actual del juego",
   			"botonDeshacer": "Deshace la última marca realizada",
   			"botonRehacer": "Vuelve a realizar la última marca deshecha",

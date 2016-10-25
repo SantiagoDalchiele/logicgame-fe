@@ -20,6 +20,10 @@
     resize: none;
 }
 
+.lg_centrado {
+	text-align: center;
+}
+
 .lgui-icono {
 	width: 32px;
 	height: 32px;
@@ -27,6 +31,10 @@
 
 .lg_tabla100 {
 	width: 100%;
+}
+
+.lg_celdaXFila {
+	display: inline-block;
 }
 
 
@@ -113,7 +121,7 @@
 	display: none;
 }
 
-#lg_panel_login, #lg_panel_registro, #lg_panel_ui_juego, #lg_dialogoConfiguracion {
+#lg_panel_login, #lg_panel_registro, #lg_panel_ui_juego, #lg_dialogoConfiguracion, #lg_panelSupPistas {
 	display: none;
 }
 
@@ -148,11 +156,11 @@
 	display: table;
 } 
 
-#lg_rankingDiv, #lg_juegoDiv, #lg_barraTareasDiv {
+#lg_rankingDiv, #lg_juegoDiv, #lg_barraTareasDiv, #lg_panelSupPistas {
 	display: table-cell;
 }
 
-#lg_rankingDiv, #lg_barraTareasDiv {
+#lg_rankingDiv, #lg_barraTareasDiv, #lg_panelSupPistas {
 	vertical-align: bottom; 
 	background: #fcfcfc; 
 }
