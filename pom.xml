@@ -12,18 +12,18 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
    		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
-	<repositories>
+	<!-- <repositories>
 		<repository>
 		    <id>project.local</id>
         	<name>project</name>
         	<url>file:./repo</url>
 		</repository>
-	</repositories>
+	</repositories> -->
 	<dependencies>
 		<dependency>
 	    	<groupId>uy.com.uma</groupId>
 	    	<artifactId>comun</artifactId>
-    		<version>0.0.4</version>
+    		<version>0.0.5</version>
 		</dependency>
 		<dependency>
 			<groupId>uy.com.uma</groupId>
