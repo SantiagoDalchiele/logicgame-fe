@@ -2,6 +2,8 @@ package uy.com.uma.logicgame.fe.web.actions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -60,7 +62,10 @@ public class SetValorAction extends JuegoAbstractAction {
 				out.write(getErrorJSON(TIPO_ERROR_NO_LOGEADO, 666, "Timeout, vuelva a conectarse", ""));
 			else {
 				matriz.setValorIngresado(id, valor);
-				out.write("{" + UtilJSON.getPropJSON(ID_PARAM_ID_CELDA) + UtilJSON.getValorJSON(id) + UtilJSON.getPropJSON(ID_PARAM_VALOR) + valor + "}");
+				Map<String, Object> props = new LinkedHashMap<String, Object>();
+				props.put(ID_PARAM_ID_CELDA, id);
+				props.put(ID_PARAM_VALOR, valor);
+				out.write(UtilJSON.getJSONObject(props).toString());
 			}
 		}
 	}

@@ -2,6 +2,7 @@ package uy.com.uma.logicgame.fe.web.model;
 
 import java.io.Serializable;
 
+import uy.com.uma.comun.util.UtilString;
 import uy.com.uma.logicgame.api.bean.ParametrosJuego;
 
 /**
@@ -118,7 +119,7 @@ public class MatrizJuego implements Serializable {
 			for (short j = 0; j < (cantDimensiones - (i+1)); j++)
 				estado.append(matriz[i][j].getEstado(i, j));
 		
-		return (estado.length() == 0 ? "" : estado.deleteCharAt(estado.length()-1).toString());
+		return UtilString.quitarUltimosCaracteres(estado.toString(), 1);
 	}
 	
 	

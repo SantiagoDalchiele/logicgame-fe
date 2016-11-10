@@ -159,7 +159,7 @@ var AdmLG = (function() {
 			
 			for (i in data.archivos) {
 				var arch = data.archivos[i];
-				var fila = [arch];
+				var fila = [arch.id];
 				dataSet.push(fila); 
 			}
 			

@@ -39,6 +39,6 @@ public class LoginAction extends AdmAbstractAction implements ILogicGameWebConst
 			}
 		}
 		
-		out.write("{" + UtilJSON.getPropJSON("resultado") + UtilJSON.getComillasJSON("" + loginResult) + "}");
+		out.write(UtilJSON.getJSONObject("resultado", "" + loginResult).toString());
 	}
 }

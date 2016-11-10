@@ -657,7 +657,7 @@ var UILG = (function (my) {
 	 * Setea el valor nuevo/viejo en la matriz, actualiza la imagen y manda setear el dato en el servidor
 	 */
 	function hacerDeshacer (dato) {
-		if (dato != null) {
+		if ((dato != null) && (dato != "")) {
 			matriz[dato.idCelda] = dato.valor;
 			var imagen = document.getElementById(dato.idCelda);
 			

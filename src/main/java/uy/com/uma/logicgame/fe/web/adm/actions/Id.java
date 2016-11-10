@@ -1,5 +1,7 @@
 package uy.com.uma.logicgame.fe.web.adm.actions;
 
+import javax.json.JsonObject;
+
 import uy.com.uma.comun.util.UtilJSON;
 import uy.com.uma.logicgame.api.bean.IJSONObject;
 
@@ -31,7 +33,7 @@ class Id implements IJSONObject {
 	
 	
 	@Override
-	public String toJSON() {
-		return UtilJSON.getComillasJSON(getId());
+	public JsonObject toJSON() {
+		return UtilJSON.getJSONObject("id", getId());
 	}
 }

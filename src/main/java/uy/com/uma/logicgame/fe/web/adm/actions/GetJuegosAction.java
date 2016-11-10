@@ -2,7 +2,10 @@ package uy.com.uma.logicgame.fe.web.adm.actions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collection;
 
+import javax.json.JsonObject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
@@ -52,15 +55,12 @@ public class GetJuegosAction extends AdmAbstractAction {
 			if ((checkLogin(req, out)) && (validarParametros(req, out))) {				
 				final String idioma = req.getParameter(PARAM_IDIOMA);
 				IManejadorJuego mj = PersistenciaFactory.getInstancia().getManejadorJuego();
-				StringBuffer buf = new StringBuffer();
+				Collection<JsonObject> datos = new ArrayList<JsonObject>();
 				
-				for (JuegoDO j : mj.getJuegos(idioma)) 
-					buf.append(j.toJSON() + ",");
+				for (JuegoDO j : mj.getJuegos(idioma))
+					datos.add(j.toJSON());
 				
-				if (buf.length() > 0)
-					buf.deleteCharAt(buf.length()-1);
-				
-				out.write("{" + UtilJSON.getPropJSON(TAG_JUEGOS) + "[" + buf + "]}");
+				out.write(UtilJSON.getJSONObject(TAG_JUEGOS, datos.toArray()).toString());
 			}
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | ConfiguracionException | PersistenciaException e) {
 			throw new ServletException(e);

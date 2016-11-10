@@ -53,8 +53,7 @@ public class EstaLogeadoAction extends SeguridadAbstractAction {
 			}
 		}
 
-		String resultado = logeado ? "1" : "0";
-		out.write("{" + UtilJSON.getPropJSON(ID_PARAM_RESULTADO) + UtilJSON.getComillasJSON(resultado) + "}");
+		out.write(UtilJSON.getJSONObject(ID_PARAM_RESULTADO, logeado ? "1" : "0").toString());
 	}
 
 }

@@ -46,7 +46,7 @@ public class LoginAction extends SeguridadAbstractAction {
 					req.getSession(true).setAttribute(JuegoAbstractAction.ID_PARAM_ID_USUARIO, manSeg.getIdUsuario(idUsuario));
 				}
 				
-				out.write("{" + UtilJSON.getPropJSON(ID_PARAM_RESULTADO) + UtilJSON.getComillasJSON("" + loginResult) + "}");
+				out.write(UtilJSON.getJSONObject(ID_PARAM_RESULTADO, "" + loginResult).toString());
 			} catch (PersistenciaException e) {
 				throw new ServletException("Error en el login de usuario", e);
 			}

@@ -2,6 +2,8 @@ package uy.com.uma.logicgame.fe.web.actions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -104,11 +106,13 @@ public class GetJuegoAction extends SeguridadAbstractAction implements ILogicGam
 			matriz = new MatrizJuego(mjw.getParametros(datos.getIdJuego()));			
 			session.setAttribute(ID_PARAM_ID_JUEGO, datos.getIdJuego());
 			session.setAttribute(ID_OBJ_MATRIZ_JUEGO, matriz);			
-			initBackgroundThread(session, idUsuario, matriz);
-			String def = "{" + UtilJSON.getPropJSON(TAG_NIVEL) + datos.getNivel() + "," + 
-						UtilJSON.getPropJSON(ID_PARAM_ESTADO) + "[" + datos.getEstado() + "]," +
-						mjw.getDefinicion(datos.getIdJuego(), datos.getIdioma()) + 
-						(UtilFormato.esNulo(rutaCss) ? "" : "," + ManejadorCss.getPropsToJSON(rutaCss)) + "}";
+			initBackgroundThread(session, idUsuario, matriz);			
+			Map<String, Object> props = new LinkedHashMap<String, Object>();
+			props.put(TAG_NIVEL, datos.getNivel());
+			props.put(ID_PARAM_ESTADO, UtilJSON.getJSONObjects(datos.getEstado()));
+			String def = UtilJSON.getJSONObject(props).toString();
+			def = def.replace("]}", "],") +	mjw.getDefinicion(datos.getIdJuego(), datos.getIdioma()) + 
+					(UtilFormato.esNulo(rutaCss) ? "" : "," + ManejadorCss.getPropsToJSON(rutaCss)) + "}";
 			log.debug(def);
 			out.write (def);
 		} catch (PersistenciaException | LogicGameException e) {

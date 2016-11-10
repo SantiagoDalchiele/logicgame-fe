@@ -2,8 +2,12 @@ package uy.com.uma.logicgame.fe.web.actions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
+import javax.json.JsonObject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
@@ -40,15 +44,18 @@ public class GetRankingAction extends SeguridadAbstractAction {
 		
 		try {
 			Collection<UsuarioDO> rank = manSeg.getRanking(idUsuario, configuracion.getMaxUsersRanking());
-			StringBuffer ret = new StringBuffer("{" + UtilJSON.getPropJSON(TAG_RANKING) + "[");
+			Map<String, Object> props = new LinkedHashMap<String, Object>();
+			Collection<JsonObject> ranking = new ArrayList<JsonObject>();
 			
 			for (UsuarioDO du : rank) {
-				ret.append("{" + UtilJSON.getPropJSON(TAG_NIVEL) + du.getNivel() + ",");
-				ret.append(UtilJSON.getPropJSON(TAG_USUARIO) + UtilJSON.getComillasJSON(du.getAlias()) + "},");
+				Map<String, Object> user = new LinkedHashMap<String, Object>();
+				user.put(TAG_NIVEL, du.getNivel());
+				user.put(TAG_USUARIO, du.getAlias());
+				ranking.add(UtilJSON.getJSONObject(user));
 			}
 			
-			ret.deleteCharAt(ret.length()-1);
-			out.write(ret.toString() + "]}"); 
+			props.put(TAG_RANKING, ranking.toArray());
+			out.write(UtilJSON.getJSONObject(props).toString());
 		} catch (PersistenciaException e) {
 			throw new ServletException("Error al obtener el ranking", e);
 		}

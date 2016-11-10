@@ -2,7 +2,12 @@ package uy.com.uma.logicgame.fe.web.actions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
+import javax.json.JsonObject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
@@ -84,19 +89,20 @@ public class GetConfiguracionAction extends JuegoAbstractAction {
 		
 		try {
 			ConfiguracionDO dc = manConf.getDatosConfiguracion(idUsuario);
-			StringBuffer bufIdiomas = new StringBuffer();
+			Map<String, Object> props = new LinkedHashMap<String, Object>();
+			Collection<JsonObject> idiomas = new ArrayList<JsonObject>();
 			
 			for (IdiomaDO di : dc.getIdiomas()) {
-				bufIdiomas.append("{" + UtilJSON.getPropJSON(TAG_ID_IDIOMA) + UtilJSON.getValorJSON(di.getId()));
-				bufIdiomas.append(UtilJSON.getPropJSON(TAG_NOMBRE_IDIOMA) + UtilJSON.getValorJSON(di.getNombre()));
-				bufIdiomas.append(UtilJSON.getPropJSON(TAG_ICONO_IDIOMA) + UtilJSON.getComillasJSON(di.getIcono()) + "},");
+				Map<String, Object> idioma = new LinkedHashMap<String, Object>();
+				idioma.put(TAG_ID_IDIOMA, di.getId());
+				idioma.put(TAG_NOMBRE_IDIOMA, di.getNombre());
+				idioma.put(TAG_ICONO_IDIOMA, di.getIcono());
+				idiomas.add(UtilJSON.getJSONObject(idioma));
 			}
 			
-			if (bufIdiomas.length() > 0)
-				bufIdiomas.deleteCharAt(bufIdiomas.length()-1);
-			
-			out.write("{" + UtilJSON.getPropJSON(TAG_IDIOMA) + UtilJSON.getValorJSON(dc.getDatosUsuario().getIdioma()) + 
-							UtilJSON.getPropJSON(TAG_IDIOMAS) + "[" + bufIdiomas + "]}");
+			props.put(TAG_IDIOMA, dc.getDatosUsuario().getIdioma());
+			props.put(TAG_IDIOMAS, idiomas.toArray());
+			out.write(UtilJSON.getJSONObject(props).toString());
 		} catch (PersistenciaException e) {
 			throw new ServletException("Error al obtener la configuracion", e);
 		}

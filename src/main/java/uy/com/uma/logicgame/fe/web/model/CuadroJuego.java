@@ -1,6 +1,8 @@
 package uy.com.uma.logicgame.fe.web.model;
 
 import java.io.Serializable;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import uy.com.uma.comun.util.UtilJSON;
 import uy.com.uma.logicgame.api.IValoresCuadroDecision;
@@ -111,13 +113,16 @@ class CuadroJuego implements IValoresCuadroDecision, Serializable {
 	 */
 	public String getEstado(short filaMatriz, short colMatriz) {
 		String estado = "";
+		Map<String, Object> props = new LinkedHashMap<String, Object>();
 		
 		for (short i = 0; i < matriz.getCantValores(); i++)
 			for (short j = 0; j < matriz.getCantValores(); j++)
-				if (valoresIngresados[i][j] != VACIA)
-					estado += "{" + UtilJSON.getPropJSON(JuegoAbstractAction.ID_PARAM_ID_CELDA) + 
-									UtilJSON.getValorJSON(MatrizJuego.getId(filaMatriz, colMatriz, i, j)) + 
-									UtilJSON.getPropJSON(JuegoAbstractAction.ID_PARAM_VALOR) + valoresIngresados[i][j] + "},";
+				if (valoresIngresados[i][j] != VACIA) {
+					props.clear();
+					props.put(JuegoAbstractAction.ID_PARAM_ID_CELDA, MatrizJuego.getId(filaMatriz, colMatriz, i, j));
+					props.put(JuegoAbstractAction.ID_PARAM_VALOR, valoresIngresados[i][j]);
+					estado += UtilJSON.getJSONObject(props).toString() + ",";
+				}
 		
 		return estado;
 	}

@@ -2,6 +2,8 @@ package uy.com.uma.logicgame.fe.web.actions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -41,8 +43,10 @@ public class RegistroAction extends SeguridadAbstractAction {
 	
 			try {
 				final short result = manSeg.registro(idioma, idUsuario, correo, clave);
-				out.write("{" + UtilJSON.getPropJSON(ID_PARAM_RESULTADO) + UtilJSON.getValorJSON("" + result) + 
-								UtilJSON.getPropJSON(ID_PARAM_ID_USUARIO) + UtilJSON.getComillasJSON(idUsuario) + "}");
+				Map<String, Object> props = new LinkedHashMap<String, Object>();
+				props.put(ID_PARAM_RESULTADO, result);
+				props.put(ID_PARAM_ID_USUARIO, idUsuario);
+				out.write(UtilJSON.getJSONObject(props).toString());
 			} catch (PersistenciaException e) {
 				throw new ServletException("Error en el registro del usuario", e);
 			}

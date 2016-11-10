@@ -1,5 +1,10 @@
 package uy.com.uma.logicgame.fe.web.css;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import javax.json.JsonObject;
+
 import uy.com.uma.comun.util.UtilJSON;
 
 /**
@@ -49,7 +54,7 @@ public class PropCss {
 	public void setValor(String valor) {
 		this.valor = valor;
 	}
-	public String toJSON() {
+	public JsonObject toJSON() {
 		return toJSON(this);
 	}
 	
@@ -58,9 +63,11 @@ public class PropCss {
 	/**
 	 * Retorna el objeto en formato JSON
 	 */
-	public static String toJSON (PropCss o) {
-		return "{" + UtilJSON.getPropJSON(ID_ATT_REGLA) + UtilJSON.getValorJSON(o.getRegla()) +
-					UtilJSON.getPropJSON(ID_ATT_PROPIEDAD) + UtilJSON.getValorJSON(o.getPropiedad()) +
-					UtilJSON.getPropJSON(ID_ATT_VALOR) + UtilJSON.getComillasJSON(o.getValor()) + "}";
+	public static JsonObject toJSON (PropCss o) {
+		Map<String, Object> props = new LinkedHashMap<String, Object>();
+		props.put(ID_ATT_REGLA, o.getRegla());
+		props.put(ID_ATT_PROPIEDAD, o.getPropiedad());
+		props.put(ID_ATT_VALOR, o.getValor());
+		return UtilJSON.getJSONObject(props);
 	}
 }

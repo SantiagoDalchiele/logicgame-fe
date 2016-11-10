@@ -4,7 +4,8 @@ import java.io.FileReader;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
+
+import javax.json.JsonObject;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -51,17 +52,12 @@ public class ManejadorCss {
 	 * "reglasEstilo":[{"regla":"regla1","propiedad":"propiedad1","valor":"valor1"},{"regla":"regla2","propiedad":"propiedad2","valor":"valor2"}] 
 	 */
 	public static String propsCsstoJSON (Collection<PropCss> props) {
-		StringBuffer ret = new StringBuffer();
-		ret.append(UtilJSON.getPropJSON(ID_ATT_REGLAS) + "[");
+		Collection<JsonObject> reglas = new ArrayList<JsonObject>();
 		
-		for (Iterator<PropCss> it = props.iterator(); it.hasNext();)
-			ret.append(it.next().toJSON() + ",");
-		
-		if (!props.isEmpty())
-			ret.deleteCharAt(ret.length()-1);
-		
-		ret.append("]");
-		return ret.toString();
+		for (PropCss pc : props)
+			reglas.add(pc.toJSON());		
+
+		return "\"" + ID_ATT_REGLAS + "\":" + UtilJSON.getJSONArray(reglas.toArray()).toString();
 	}
 	
 	
@@ -75,9 +71,9 @@ public class ManejadorCss {
 		if (pathCssFile != null) {
 			try {			
 				Reader r = new FileReader(pathCssFile);
-		        InputSource is = new InputSource (r);
+				InputSource is = new InputSource(r);
 		        CSSOMParser parser = new CSSOMParser();
-		        CSSStyleSheet hoja = parser.parseStyleSheet (is);            
+		        CSSStyleSheet hoja = parser.parseStyleSheet(is, null, null);            
 		        CSSRuleList rules = hoja.getCssRules();
 		        
 		        for (int i = 0; i < rules.getLength(); i++) {

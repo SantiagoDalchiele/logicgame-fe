@@ -1,10 +1,10 @@
-.juego-fuente-defecto {
+.lg_juego-fuente-defecto {
 	color: green;
 	font-family: Arial;
 	font-size: 12px;
 	font-weight: none;		
 }
 
-.juego-tabla-con-imagen {
-	background-image: url("img/Renzo.jpg");
+.lg_juego-tabla-con-imagen {
+	background-image: url("../img/Renzo.jpg");
 }

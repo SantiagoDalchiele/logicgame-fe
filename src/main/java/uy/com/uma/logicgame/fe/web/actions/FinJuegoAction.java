@@ -73,6 +73,6 @@ public class FinJuegoAction extends SeguridadAbstractAction {
 			}
 		}
 		
-		out.write("{" + UtilJSON.getPropJSON(TAG_RESULTADO) + resultado + "}");
+		out.write(UtilJSON.getJSONObject(TAG_RESULTADO, "" + resultado).toString());
 	}
 }

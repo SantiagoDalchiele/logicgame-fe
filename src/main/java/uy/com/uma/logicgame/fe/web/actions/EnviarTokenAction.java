@@ -64,7 +64,7 @@ public class EnviarTokenAction extends SeguridadAbstractAction {
 					result = IManejadorSeguridad.LOGIN_EXITOSO;
 				}
 				
-				out.write("{" + UtilJSON.getPropJSON(ID_PARAM_RESULTADO) + UtilJSON.getComillasJSON("" + result) + "}");
+				out.write(UtilJSON.getJSONObject(ID_PARAM_RESULTADO, "" + result).toString());
 			} catch (PersistenciaException | MessagingException e) {
 				throw new ServletException("Error en el envio de token", e);
 			}

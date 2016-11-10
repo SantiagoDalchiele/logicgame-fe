@@ -2,8 +2,10 @@ package uy.com.uma.logicgame.fe.web.adm.actions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.json.JsonObject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
@@ -41,15 +43,12 @@ abstract class GetDatosAbstractAction extends AdmAbstractAction {
 	public void perform(HttpServletRequest req, PrintWriter out) throws ServletException, IOException {
 		try {
 			if (checkLogin(req, out)) {				
-				StringBuffer buf = new StringBuffer();
+				Collection<JsonObject> datos = new ArrayList<JsonObject>();
 				
 				for (IJSONObject o : getDatos())
-					buf.append(o.toJSON() + ",");
+					datos.add(o.toJSON());
 				
-				if (buf.length() > 0)
-					buf.deleteCharAt(buf.length()-1);
-				
-				out.write("{" + UtilJSON.getPropJSON(getTagColeccion()) + "[" + buf + "]}");
+				out.write(UtilJSON.getJSONObject(getTagColeccion(), datos.toArray()).toString());				
 			}
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | 
 					ConfiguracionException | PersistenciaException e) {

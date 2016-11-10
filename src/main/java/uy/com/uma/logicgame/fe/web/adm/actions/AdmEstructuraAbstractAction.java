@@ -33,7 +33,7 @@ public abstract class AdmEstructuraAbstractAction extends AdmAbstractAction impl
 			if (checkLogin(req, out)) {
 				IManejadorEstructura manEstructura = PersistenciaFactory.getInstancia().getManejadorEstructura();			
 				String result = doAction(manEstructura);
-				out.write("{" + UtilJSON.getPropJSON("resultado") + UtilJSON.getComillasJSON("" + result) + "}");
+				out.write(UtilJSON.getJSONObject("resultado", result).toString());
 			}
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | ConfiguracionException | PersistenciaException e) {
 			throw new ServletException(e);
