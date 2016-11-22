@@ -74,6 +74,7 @@
   	<seguridad>uy.com.uma.logicgame.persistencia.seguridad.ManejadorSeguridad</seguridad>
   	<configuracion>uy.com.uma.logicgame.persistencia.ManejadorConfiguracion</configuracion>
   	<cargador-recursos>uy.com.uma.logicgame.persistencia.CargadorRecursos</cargador-recursos>
+  	<log-acciones>uy.com.uma.logicgame.persistencia.seguridad.ManejadorLogAcciones</log-acciones>
   </manejadores>
   <ruta-defecto>1</ruta-defecto>
   <security-salt>h0WJVmKmVOnOi4J4QenixH7FIf2dW0TiQja4UpcxDgU=</security-salt>

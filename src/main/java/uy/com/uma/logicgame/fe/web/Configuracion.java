@@ -37,7 +37,16 @@ public class Configuracion implements IConfiguracionConstantes {
 	private static final String PROP_TIMEOUT_CORREO				= "correo.timeout";
 	private static final String PROP_ASUNTO_CORREO				= "correo.asunto";
 	private static final String PROP_CONTENIDO_CORREO			= "correo.contenido";
-	
+	private static final String PROP_MAX_LOGIN_IP				= "max.login.ip";
+	private static final String PROP_MAX_LOGIN_IP_DIA			= "max.login.ip.dia";
+	private static final String PROP_MAX_LOGIN_USUARIO			= "max.login.usuario";
+	private static final String PROP_MAX_LOGIN_USUARIO_DIA		= "max.login.usuario.dia";
+	private static final String PROP_MAX_REGISTRO_IP			= "max.registro.ip";
+	private static final String PROP_MAX_REGISTRO_IP_DIA		= "max.registro.ip.dia";
+	private static final String PROP_MAX_ENVIO_TOKEN_IP			= "max.envio.token.ip";
+	private static final String PROP_MAX_ENVIO_TOKEN_IP_DIA		= "max.envio.token.ip.dia";
+	private static final String PROP_MAX_ENVIO_TOKEN_USUARIO	= "max.envio.token.usuario";
+	private static final String PROP_MAX_ENVIO_TOKEN_USUARIO_DIA = "max.envio.token.usuario.dia";
 	
 	
 	/** Unica instancia de la clase */
@@ -49,6 +58,16 @@ public class Configuracion implements IConfiguracionConstantes {
 	private long backgroundThreadTimeout;
 	private MailParams parametrosCorreo;
 	private String plantillaContenidoCorreo;
+	private int maxLoginxIp;
+	private int maxLoginxIpxDia;
+	private int maxLoginxUsuario;
+	private int maxLoginxUsuarioxDia;
+	private int maxRegistroxIp;
+	private int maxRegistroxIpxDia;
+	private int maxEnvioTokenxIp;
+	private int maxEnvioTokenxIpxDia;
+	private int maxEnvioTokenxUsuario;
+	private int maxEnvioTokenxUsuarioxDia;
 	
 	
 	
@@ -100,6 +119,17 @@ public class Configuracion implements IConfiguracionConstantes {
 		parametrosCorreo.setFrom(p.getProperty(PROP_DIRECCION_CORREO));
 		parametrosCorreo.setAsunto(p.getProperty(PROP_ASUNTO_CORREO));
 		plantillaContenidoCorreo = p.getProperty(PROP_CONTENIDO_CORREO);
+		
+		maxLoginxIp = Integer.parseInt(p.getProperty(PROP_MAX_LOGIN_IP));
+		maxLoginxIpxDia = Integer.parseInt(p.getProperty(PROP_MAX_LOGIN_IP_DIA));
+		maxLoginxUsuario = Integer.parseInt(p.getProperty(PROP_MAX_LOGIN_USUARIO));
+		maxLoginxUsuarioxDia = Integer.parseInt(p.getProperty(PROP_MAX_LOGIN_USUARIO_DIA));
+		maxRegistroxIp = Integer.parseInt(p.getProperty(PROP_MAX_REGISTRO_IP));
+		maxRegistroxIpxDia = Integer.parseInt(p.getProperty(PROP_MAX_REGISTRO_IP_DIA));
+		maxEnvioTokenxIp = Integer.parseInt(p.getProperty(PROP_MAX_ENVIO_TOKEN_IP));
+		maxEnvioTokenxIpxDia = Integer.parseInt(p.getProperty(PROP_MAX_ENVIO_TOKEN_IP_DIA));
+		maxEnvioTokenxUsuario = Integer.parseInt(p.getProperty(PROP_MAX_ENVIO_TOKEN_USUARIO));
+		maxEnvioTokenxUsuarioxDia = Integer.parseInt(p.getProperty(PROP_MAX_ENVIO_TOKEN_USUARIO_DIA));		
 	}
 
 	
@@ -121,5 +151,35 @@ public class Configuracion implements IConfiguracionConstantes {
 	}
 	public String getPlantillaContenidoCorreo() {
 		return plantillaContenidoCorreo;
+	}
+	public int getMaxLoginxIp() {
+		return maxLoginxIp;
+	}
+	public int getMaxLoginxIpxDia() {
+		return maxLoginxIpxDia;
+	}
+	public int getMaxLoginxUsuario() {
+		return maxLoginxUsuario;
+	}
+	public int getMaxLoginxUsuarioxDia() {
+		return maxLoginxUsuarioxDia;
+	}
+	public int getMaxRegistroxIp() {
+		return maxRegistroxIp;
+	}
+	public int getMaxRegistroxIpxDia() {
+		return maxRegistroxIpxDia;
+	}
+	public int getMaxEnvioTokenxIp() {
+		return maxEnvioTokenxIp;
+	}
+	public int getMaxEnvioTokenxIpxDia() {
+		return maxEnvioTokenxIpxDia;
+	}
+	public int getMaxEnvioTokenxUsuario() {
+		return maxEnvioTokenxUsuario;
+	}
+	public int getMaxEnvioTokenxUsuarioxDia() {
+		return maxEnvioTokenxUsuarioxDia;
 	}
 }

@@ -1,6 +1,7 @@
 <html>
 <head>
-<title>Carga de datos al sistema LogicGame</title>
+<meta charset="ISO-8859-1">
+<title>Administración del sistema LogicGame</title>
 <%! java.lang.String idiomaDef = java.util.Locale.getDefault().getLanguage(); %>
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"/>
@@ -32,14 +33,16 @@
 <table id="lg.adm.menu.estructura">
 	<tr>
 		<td><input type="button" id="lg_btt_crear_tablas" value="Crear Tablas" onclick="AdmLG.doCrearTablas()"/></td>		
-		<td width="200"/>
+		<td width="150"/>
 		<td><input type="button" id="lg_btt_crear_ruta_x_defecto" value="Crear Ruta por Defecto" onclick="AdmLG.doCrearRutaXDefecto()"/></td>
-		<td width="200"/>
+		<td width="150"/>
 		<td><input type="button" id="lg_btt_borrar_datos" value="Borrar Datos" onclick="AdmLG.doBorrarDatos()"/></td>
-		<td width="200"/>
+		<td width="150"/>
 		<td><input type="button" id="lg_btt_borrar_tablas" value="Borrar Tablas" onclick="AdmLG.doBorrarTablas()"/></td>
-		<td width="200"/>
+		<td width="150"/>
 		<td><input type="button" id="lg_btt_parche01" value="Parche atributos token" onclick="AdmLG.doParche01()"/></td>
+		<td width="150"/>
+		<td><input type="button" id="lg_btt_parche02" value="Parche tabla Log de Acciones" onclick="AdmLG.doParche02()"/></td>
 	</tr>
 </table>
 <!-- Upload de archivo de recursos del sistema -->

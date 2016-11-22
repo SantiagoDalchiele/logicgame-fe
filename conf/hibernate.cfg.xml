@@ -15,10 +15,11 @@
 		<mapping class="uy.com.uma.logicgame.persistencia.inter.Literal" />
 		<mapping class="uy.com.uma.logicgame.persistencia.juego.Dimension" />
 		<mapping class="uy.com.uma.logicgame.persistencia.juego.Juego" />
-		<mapping class="uy.com.uma.logicgame.persistencia.juego.JuegoXIdioma" />
+		<mapping class="uy.com.uma.logicgame.persistencia.juego.JuegoXIdioma" />		
 		<mapping class="uy.com.uma.logicgame.persistencia.juego.Pista" />
 		<mapping class="uy.com.uma.logicgame.persistencia.juego.PistaJuego" />
 		<mapping class="uy.com.uma.logicgame.persistencia.juego.Valor" />
+		<mapping class="uy.com.uma.logicgame.persistencia.seguridad.LogAccion" />
 		<mapping class="uy.com.uma.logicgame.persistencia.seguridad.Ruta" />
 		<mapping class="uy.com.uma.logicgame.persistencia.seguridad.Usuario" />
 	</session-factory>

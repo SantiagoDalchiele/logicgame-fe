@@ -32,6 +32,7 @@ import uy.com.uma.logicgame.fe.web.adm.actions.GetRutasAction;
 import uy.com.uma.logicgame.fe.web.adm.actions.GetUsuariosAction;
 import uy.com.uma.logicgame.fe.web.adm.actions.LoginAction;
 import uy.com.uma.logicgame.fe.web.adm.actions.Parche01Action;
+import uy.com.uma.logicgame.fe.web.adm.actions.Parche02Action;
 
 /**
  * Atiende los eventos producidos por la interface web de administracion (sus requerimientos AJAX)
@@ -77,6 +78,7 @@ public class FachadaAdmLgServlet extends HttpServlet implements ILogicGameWebCon
 			accs.add(new GetUsuariosAction());
 			accs.add(new LoginAction());			
 			accs.add(new Parche01Action());
+			accs.add(new Parche02Action());
 			
 			for (AdmAbstractAction acc : accs) {
 				acc.setConfiguracion(configuracion);

@@ -31,6 +31,9 @@ public class MatrizJuego implements Serializable {
 	/** Matriz de (cantDimensiones-1 x cantDimensiones-1) con cada cuadro de juego */
 	private CuadroJuego [][] matriz;
 	
+	/** Maxima cantidad de intentos posibles de solicitar si está bien o mal el juego (seguridad, abuso del servicio) */
+	private int maxIntentos;
+	
 	
 	
 	/**
@@ -39,6 +42,7 @@ public class MatrizJuego implements Serializable {
 	public MatrizJuego (ParametrosJuego params) {
 		cantDimensiones = params.getCantDimensiones();
 		cantValores = params.getCantValores();
+		maxIntentos = params.getMaxIntentos();
 		matriz = new CuadroJuego [cantDimensiones-1][cantDimensiones-1];
 		
 		for (int i = 0; i < (cantDimensiones - 1); i++)
@@ -74,6 +78,9 @@ public class MatrizJuego implements Serializable {
 	public short getCantValores() {
 		return this.cantValores;
 	}	
+	public int getMaxIntentos() {
+		return this.maxIntentos;
+	}
 	public boolean estaCompleto() {
 		return completo;
 	}

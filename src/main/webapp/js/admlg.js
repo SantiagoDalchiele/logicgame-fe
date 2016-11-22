@@ -22,6 +22,7 @@ var AdmLG = (function() {
 	var ID_REQ_GET_RUTAS			= "getRutas.admdo";
 	var ID_REQ_GET_USUARIOS			= "getUsuarios.admdo";
 	var ID_REQ_PARCHE_TOKEN			= "parche01.admdo";
+	var ID_REQ_PARCHE_LOG_ACCIONES	= "parche02.admdo";
 	
 	
 	/** Ruta de la página principal de administración del sistema */
@@ -80,6 +81,10 @@ var AdmLG = (function() {
 	
 	my.doParche01 = function() {		
 		ajaxPost(ID_REQ_PARCHE_TOKEN, {}, false, procesarAdmBaseDatos);
+	}
+	
+	my.doParche02 = function() {		
+		ajaxPost(ID_REQ_PARCHE_LOG_ACCIONES, {}, false, procesarAdmBaseDatos);
 	}
 	
 	my.doGetIdiomas = function() {		

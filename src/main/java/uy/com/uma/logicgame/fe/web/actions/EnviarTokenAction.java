@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import uy.com.uma.comun.mail.MailParams;
 import uy.com.uma.comun.mail.UtilMail;
 import uy.com.uma.comun.util.UtilJSON;
+import uy.com.uma.comun.util.UtilWeb;
 import uy.com.uma.logicgame.api.LogicGameException;
+import uy.com.uma.logicgame.api.bean.LogAccionDO;
 import uy.com.uma.logicgame.api.bean.UsuarioDO;
+import uy.com.uma.logicgame.api.persistencia.IManejadorLogAcciones;
 import uy.com.uma.logicgame.api.persistencia.IManejadorSeguridad;
 import uy.com.uma.logicgame.api.persistencia.PersistenciaException;
 import uy.com.uma.logicgame.api.validacion.UtilValidacionParametros;
@@ -21,7 +24,7 @@ import uy.com.uma.logicgame.api.validacion.UtilValidacionParametros;
  *
  * @author Santiago Dalchiele
  */
-public class EnviarTokenAction extends SeguridadAbstractAction {
+public class EnviarTokenAction extends ControlAbstractAction {
 
 	
 	public EnviarTokenAction() throws LogicGameException {		
@@ -39,8 +42,10 @@ public class EnviarTokenAction extends SeguridadAbstractAction {
 	
 	@Override
 	public void perform(HttpServletRequest req, PrintWriter out) throws ServletException, IOException {
-		if (validarParametros(req, out)) {
+		if ((validarParametros(req, out)) && controlAccesos(req, out)) {
 			String idUsuario = req.getParameter(ID_PARAM_ID_USUARIO);
+			final LogAccionDO la = new LogAccionDO(req, IManejadorLogAcciones.ENVIO_TOKEN);
+			la.setUsuario(idUsuario);			
 			
 			try {
 				short result = 0;
@@ -49,7 +54,7 @@ public class EnviarTokenAction extends SeguridadAbstractAction {
 					result = IManejadorSeguridad.LOGIN_USUARIO_INEXISTENTE;
 				else {
 					idUsuario = manSeg.getIdUsuario(idUsuario);
-					String token = manSeg.generarToken(idUsuario);
+					final String token = manSeg.generarToken(idUsuario);
 					UsuarioDO userData = manSeg.getDatosUsuario(idUsuario);
 					String plantilla = configuracion.getPlantillaContenidoCorreo();
 					final String reqUrl = req.getRequestURL().toString();
@@ -64,6 +69,8 @@ public class EnviarTokenAction extends SeguridadAbstractAction {
 					result = IManejadorSeguridad.LOGIN_EXITOSO;
 				}
 				
+				la.setResultado(result);
+				manLog.persistirAccion(la);	
 				out.write(UtilJSON.getJSONObject(ID_PARAM_RESULTADO, "" + result).toString());
 			} catch (PersistenciaException | MessagingException e) {
 				throw new ServletException("Error en el envio de token", e);
@@ -87,5 +94,32 @@ public class EnviarTokenAction extends SeguridadAbstractAction {
 				return super.validarParametros(req, out);
 		} else
 			return true;
+	}	
+	
+	
+	
+	/**
+	 * Obtiene la cantidad de logins realizados desde esta ip, y por este usuario y los compara contra los máximos seteados en
+	 * la configuración, a los efectos de no permitir el abuso del servicio (temas de seguridad)
+	 */
+	@Override
+	protected boolean controlAccesos(HttpServletRequest req, PrintWriter out) {	
+		try {
+			final String idUsuario = manSeg.getIdUsuario(req.getParameter(ID_PARAM_ID_USUARIO));
+			final String ip = UtilWeb.getClientIpAddr(req);
+			final int cantIp = manLog.getCantAccionesUltExito(IManejadorLogAcciones.ENVIO_TOKEN, ip, null, false);
+			final int cantIpDia = manLog.getCantAccionesUltExito(IManejadorLogAcciones.ENVIO_TOKEN, ip, null, true);
+			final int cantUsuario = manLog.getCantAccionesUltExito(IManejadorLogAcciones.ENVIO_TOKEN, null, idUsuario, false);
+			final int cantUsuarioDia = manLog.getCantAccionesUltExito(IManejadorLogAcciones.ENVIO_TOKEN, null, idUsuario, true);
+				
+			if ((cantIp <= configuracion.getMaxEnvioTokenxIp()) && (cantIpDia <= configuracion.getMaxEnvioTokenxIpxDia()) &&
+					(cantUsuario <= configuracion.getMaxEnvioTokenxUsuario()) && (cantUsuarioDia <= configuracion.getMaxEnvioTokenxUsuarioxDia()))
+				return true;
+			else
+				return super.controlAccesos(req, out);
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			return true;
+		}
 	}	
 }

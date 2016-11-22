@@ -1,8 +1,8 @@
 /**
  * Define la logica de manejo del juego en si
  * 
- * @see uy.com.uma.logicgame.be.web.actions.JuegoAbstractAction
- * @see uy.com.uma.logicgame.be.web.actions.FinJuegoAction
+ * @see uy.com.uma.logicgame.fe.web.actions.JuegoAbstractAction
+ * @see uy.com.uma.logicgame.fe.web.actions.FinJuegoAction
  * @see uy.com.uma.logicgame.resolucion.modelo.IValoresCuadroDecision
  * @see UILG-core.js, UILG-ajax.js, UILG-dialogos.js, UILG-main.js
  * @see i18next.js, jquery.js
@@ -12,7 +12,7 @@ var UILG = (function (my) {
 	
 	/** 
 	 * Nombre de los requerimientos enviados por AJAX
-	 * @see uy.com.uma.logicgame.be.web.actions.JuegoAbstractAction 
+	 * @see uy.com.uma.logicgame.fe.web.actions.JuegoAbstractAction 
 	 */
 	var ID_REQ_GET_JUEGO = "getJuego.do";
 	var ID_REQ_GET_RANKING = "getRanking.do";
@@ -49,7 +49,7 @@ var UILG = (function (my) {
 
 	/** 
 	 * Constantes que representan el resultado de evaluar el juego
-	 * @see uy.com.uma.logicgame.be.web.actions.FinJuegoAction 
+	 * @see uy.com.uma.logicgame.api.persistencia.IManejadorJuegoWeb 
 	 */
 	var JUEGO_INCOMPLETO = 1;
 	var JUEGO_ERRONEO = 2;
