@@ -2,6 +2,7 @@ package uy.com.uma.logicgame.fe.web.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.KeyException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -84,7 +85,7 @@ public class FachadaAdmLgServlet extends HttpServlet implements ILogicGameWebCon
 				acc.setConfiguracion(configuracion);
 				acciones.put(acc.getName(), acc);
 			}
-		} catch (Exception e) {
+		} catch (KeyException | IOException e) {
 			log.fatal("Error al obtener la configuración del sistema", e);
 			throw new ServletException("Error al obtener la configuración del sistema", e);
 		}
@@ -95,7 +96,7 @@ public class FachadaAdmLgServlet extends HttpServlet implements ILogicGameWebCon
 	/**
 	 * Inicializa el acceso a la base de datos
 	 */
-	protected void initDB() throws ServletException {
+	protected synchronized void initDB() throws ServletException {
 		try {
 			PersistenciaFactory.getInstancia().getManejadorSesiones().reset();
 			bdInicializada = true;
@@ -131,12 +132,14 @@ public class FachadaAdmLgServlet extends HttpServlet implements ILogicGameWebCon
 				log.debug("Procesando el request: " + reqUri + ", la peticion es del metodo: " + peticion);
 				AdmAbstractAction accion = acciones.get(peticion);
 				
-				if (accion.usaConexionBD() && (!bdInicializada))
-					initDB();
+				synchronized (this) {
+					if (accion.usaConexionBD() && (!bdInicializada))
+						initDB();
+				}
 				
 				accion.perform(req, response.getWriter());
 			}
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 			log.fatal("Error al procesar la solicitud de administracion logicgame", e);
 			response.getWriter().write(JuegoAbstractAction.getErrorJSON(e));		

@@ -11,7 +11,6 @@ import uy.com.uma.logicgame.api.conf.ConfiguracionException;
 import uy.com.uma.logicgame.api.persistencia.IManejadorEstructura;
 import uy.com.uma.logicgame.api.persistencia.PersistenciaException;
 import uy.com.uma.logicgame.api.persistencia.PersistenciaFactory;
-import uy.com.uma.logicgame.fe.web.ILogicGameWebConstants;
 
 /**
  * Acción genérica para los cambios en la estructura de la base de datos utilizando IManejadorEstructura
@@ -19,7 +18,7 @@ import uy.com.uma.logicgame.fe.web.ILogicGameWebConstants;
  * @see uy.com.uma.logicgame.api.persistencia.IManejadorEstructura *
  * @author Santiago Dalchiele
  */
-public abstract class AdmEstructuraAbstractAction extends AdmAbstractAction implements ILogicGameWebConstants {
+public abstract class AdmEstructuraAbstractAction extends AdmAbstractAction {
 
 	
 	/** Accion a implementar por cada clase que herede de esta */

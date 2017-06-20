@@ -37,7 +37,7 @@ public class GrabarJuegoAction extends SeguridadAbstractAction {
 		MatrizJuego matriz = (MatrizJuego) req.getSession().getAttribute(ID_OBJ_MATRIZ_JUEGO);
 		String idUsuario = req.getSession().getAttribute(ID_PARAM_ID_USUARIO).toString();		
 		
-		if ((idUsuario != null) && (matriz != null)) {
+		if (matriz != null) {
 			try {
 				manSeg.setEstado(idUsuario, matriz.getEstado());
 				out.write(RESPUESTA_JSON_DEFECTO_OK);

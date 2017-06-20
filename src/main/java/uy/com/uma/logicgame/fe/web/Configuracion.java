@@ -50,7 +50,8 @@ public class Configuracion implements IConfiguracionConstantes {
 	
 	
 	/** Unica instancia de la clase */
-	private static Configuracion instancia = null;
+	private static volatile Configuracion instancia = null;
+	private static final Object lock = new Object();
 	
 	/** Atributos de la configuracion */
 	private String admPassword;
@@ -75,8 +76,12 @@ public class Configuracion implements IConfiguracionConstantes {
 	 * Retorna la única instancia de la clase
 	 */
 	public static Configuracion getInstancia() throws IOException, KeyException {
-		if (instancia == null)
-			instancia = new Configuracion();
+		if (instancia == null) {	
+			synchronized (lock) {
+				if (instancia == null)
+					instancia = new Configuracion();
+			}
+		}
 		
 		return instancia;
 	}

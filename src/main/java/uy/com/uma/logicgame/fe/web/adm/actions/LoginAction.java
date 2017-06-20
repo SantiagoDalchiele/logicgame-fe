@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import uy.com.uma.comun.util.UtilJSON;
 import uy.com.uma.logicgame.api.validacion.UtilValidacionParametros;
-import uy.com.uma.logicgame.fe.web.ILogicGameWebConstants;
 import uy.com.uma.logicgame.persistencia.seguridad.UtilSeguridad;
 
 /**
@@ -16,7 +15,7 @@ import uy.com.uma.logicgame.persistencia.seguridad.UtilSeguridad;
  *
  * @author Santiago Dalchiele
  */
-public class LoginAction extends AdmAbstractAction implements ILogicGameWebConstants {
+public class LoginAction extends AdmAbstractAction {
 
 	@Override
 	public String getName() {
@@ -32,7 +31,7 @@ public class LoginAction extends AdmAbstractAction implements ILogicGameWebConst
 		if (UtilValidacionParametros.esValidaClave(clave)) {
 			final String pass = UtilSeguridad.getClaveEncriptada(ID_USUARIO_ADMIN, clave);
 			
-			if (configuracion.getAdmPassword().equals(pass)) {
+			if ((configuracion != null) && (configuracion.getAdmPassword().equals(pass))) {
 				req.getSession(false).invalidate();
 				req.getSession(true).setAttribute(ID_ATT_CLAVE_ADM, pass);
 				loginResult = 1;					

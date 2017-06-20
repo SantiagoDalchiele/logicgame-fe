@@ -183,7 +183,7 @@ public class MatrizJuego implements Serializable {
 	 *
 	 * @author Santiago Dalchiele
 	 */
-	class PosicionMatrizJuego {
+	static class PosicionMatrizJuego {
 		
 		public short filaMatriz;
 		public short colMatriz;

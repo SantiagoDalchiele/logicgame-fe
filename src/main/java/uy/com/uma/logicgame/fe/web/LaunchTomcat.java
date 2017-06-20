@@ -31,7 +31,7 @@ public class LaunchTomcat {
 	            webPort = "8080";
 	        }
 	
-	        tomcat.setPort(Integer.valueOf(webPort));
+	        tomcat.setPort(Integer.parseInt(webPort));
 	        String contextPath = "/";
 	        StandardContext ctx = (StandardContext) tomcat.addWebapp(contextPath, new File(webappDirLocation).getAbsolutePath());
 	        System.out.println("configuring app with basedir: " + new File("./" + webappDirLocation).getAbsolutePath());

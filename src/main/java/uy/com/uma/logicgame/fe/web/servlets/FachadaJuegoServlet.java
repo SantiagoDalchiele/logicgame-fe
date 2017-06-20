@@ -130,7 +130,7 @@ public class FachadaJuegoServlet extends DBAccessServlet implements ILogicGameWe
 					accion.perform(request, out);
 				}
 			}
-		} catch (Exception e) {			
+		} catch (IOException e) {			
 			log.fatal("Error al procesar la solicitud del juego", e);
 			response.getWriter().write(JuegoAbstractAction.getErrorJSON(e));
 		}

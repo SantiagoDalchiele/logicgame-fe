@@ -58,7 +58,7 @@ abstract class DBAccessServlet extends HttpServlet implements IConfiguracionCons
 	/**
 	 * Inicializa la configuracion del sistema (logicgame.properties)
 	 */
-	protected void initConfiguracion() throws ServletException {
+	protected synchronized void initConfiguracion() throws ServletException {
 		try {
 			configuracion = Configuracion.getInstancia();
 		} catch (Exception e) {

@@ -112,7 +112,7 @@ class CuadroJuego implements IValoresCuadroDecision, Serializable {
 	 * Retorna los valores de la matriz en una especie de "formato JSON" para persistir el estado actual del juego
 	 */
 	public String getEstado(short filaMatriz, short colMatriz) {
-		String estado = "";
+		StringBuffer estado = new StringBuffer();
 		Map<String, Object> props = new LinkedHashMap<String, Object>();
 		
 		for (short i = 0; i < matriz.getCantValores(); i++)
@@ -121,10 +121,10 @@ class CuadroJuego implements IValoresCuadroDecision, Serializable {
 					props.clear();
 					props.put(JuegoAbstractAction.ID_PARAM_ID_CELDA, MatrizJuego.getId(filaMatriz, colMatriz, i, j));
 					props.put(JuegoAbstractAction.ID_PARAM_VALOR, valoresIngresados[i][j]);
-					estado += UtilJSON.getJSONObject(props).toString() + ",";
+					estado.append(UtilJSON.getJSONObject(props).toString() + ",");
 				}
 		
-		return estado;
+		return estado.toString();
 	}
 	
 	

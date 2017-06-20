@@ -7,6 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -78,6 +79,7 @@ abstract class AbstractAttack {
 	
 	/**
 	 * Retorna el resultado del ataque
+	 * @throws IOException 
 	 */
 	public int doAttack() throws IOException {
 		Scanner scanner = null;
@@ -93,7 +95,7 @@ abstract class AbstractAttack {
 			connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=" + charset);
 			OutputStream output = connection.getOutputStream();
 			output.write(query.getBytes(charset));	
-			scanner = new Scanner(connection.getInputStream());
+			scanner = new Scanner(connection.getInputStream(), Charset.defaultCharset().displayName());
 		    final String jsonResponse = scanner.useDelimiter("\\A").next();
 		    reader = Json.createReader(new StringReader(jsonResponse));
 		    final JsonObject jObject = reader.readObject();
@@ -103,8 +105,8 @@ abstract class AbstractAttack {
 		    else
 		    	return Integer.parseInt(UtilString.quitarComillas(jObject.get(tagResultado).toString()));
 		} finally {
-			try { if (reader != null) reader.close(); } catch (Exception e) {}
-			try { if (scanner != null) scanner.close(); } catch (Exception e) {}
+			if (reader != null) reader.close();
+			if (scanner != null) scanner.close();
 		}
 	}
 	
@@ -117,8 +119,8 @@ abstract class AbstractAttack {
 		String query = UtilString.concatenar(parametros.keySet(), "=%s&") + "=%s";
 		Collection<String> valuesCoded = new ArrayList<String>();
 		
-		for (String key : parametros.keySet())
-			valuesCoded.add(URLEncoder.encode(parametros.get(key).toString(), charset));
+		for (Object parm : parametros.values())
+			valuesCoded.add(URLEncoder.encode(parm.toString(), charset));
 			
 		return String.format(query, valuesCoded.toArray());
 	}

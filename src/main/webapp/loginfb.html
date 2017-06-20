@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test login con facebook</title>
+<script src="//http://codeorigin.jquery.com/jquery-1.10.2.min.js"></script>
+<script>
+		$(function() {
+			alert('Dentro de esto que se debería cargar en el init');
+			
+			$.ajax({
+				url : '//connect.facebook.net/es_ES/all.js',
+				dataType : 'script',
+				cache : true,
+				success : function() {
+					alert('Facebook listo');
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+	<p>Iniciar sesi&oacute;n con Facebook:</p>
+	<fb:login-button perms="email,user_birthday"></fb:login-button>	
+</body>
+</html>

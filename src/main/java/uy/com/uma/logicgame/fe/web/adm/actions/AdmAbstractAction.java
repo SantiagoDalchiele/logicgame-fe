@@ -71,12 +71,16 @@ public abstract class AdmAbstractAction extends ActionsHelper implements ILogicG
 		if (req.getSession().getAttribute(ID_ATT_CLAVE_ADM) == null)
 			out.write(getErrorJSON ("Usuario no logeado para adminstrar"));
 		else {
-			final String clave = req.getSession().getAttribute(ID_ATT_CLAVE_ADM).toString();				
-		
-			if (!clave.equals(configuracion.getAdmPassword()))
-				out.write(getErrorJSON ("Clave de administracion incorrecta"));
-			else
-				return true;
+			if (configuracion == null) 
+				out.write(getErrorJSON ("Configuracion no iniciada"));
+			else {
+				final String clave = req.getSession().getAttribute(ID_ATT_CLAVE_ADM).toString();		
+				
+				if (!clave.equals(configuracion.getAdmPassword()))
+					out.write(getErrorJSON ("Clave de administracion incorrecta"));
+				else
+					return true;
+			}
 		}
 		
 		return false;

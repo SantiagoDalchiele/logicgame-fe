@@ -65,7 +65,7 @@ public class BackgroundThread extends Thread implements Serializable {
 	/**
 	 * Resetea la conexión a la base
 	 */
-	public void reset() throws LogicGameException {
+	public synchronized void reset() throws LogicGameException {
 		try {
 			ms = PersistenciaFactory.getInstancia().getManejadorSeguridad();
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | ConfiguracionException e) {
@@ -78,8 +78,8 @@ public class BackgroundThread extends Thread implements Serializable {
 	/**
 	 * Retorna el identificador del usuario
 	 */
-	public String getIdUsuario() {
-		return this.idUsuario;
+	public synchronized String getIdUsuario() {
+		return this.idUsuario;			
 	}
 	
 	
@@ -100,21 +100,27 @@ public class BackgroundThread extends Thread implements Serializable {
 	public void run() {
 		try {
 			while (true) {
-				log.debug("Ejecutando el Thread de tareas en background para el usuario [" + idUsuario +  "] - esperando " + (factorTimeout * timeout) + " milisegundos");
-				Thread.sleep(factorTimeout * timeout);
+				long timeToSleep = 0;
 				
-				try {
-					if (!ms.estaLogeado(idUsuario)) {
-						this.idUsuario = null;
-						this.matriz = null;
-						this.interrupt();
+				synchronized (this) {
+					timeToSleep = factorTimeout * timeout;
+					log.debug("Ejecutando el Thread de tareas en background para el usuario [" + idUsuario +  "] - esperando " + timeToSleep + " milisegundos");
+				}				
+				
+				Thread.sleep(timeToSleep);
+				
+				synchronized (this) {
+					try {
+						if (!ms.estaLogeado(idUsuario)) {
+							this.idUsuario = null;
+							this.matriz = null;
+							this.interrupt();
+						}
+					} catch (PersistenciaException pe) {
+						log.warn("Error al obtener si esta logeado o no el usuario [" + idUsuario + "]", pe);
 					}
-				} catch (PersistenciaException pe) {
-					log.warn("Error al obtener si esta logeado o no el usuario [" + idUsuario + "]", pe);
-				}
-				
-				if (matriz != null) {
-					synchronized (this) {
+					
+					if (matriz != null) {
 						try {
 							if (idUsuario != null) {
 								String estado = matriz.getEstado();
@@ -134,7 +140,7 @@ public class BackgroundThread extends Thread implements Serializable {
 				}
 			}
 		} catch (InterruptedException e) {
-			log.debug("Thread de tareas en background - hilo interrumpido [" + idUsuario + "]");
+			log.debug("Thread de tareas en background - hilo interrumpido [" + getIdUsuario() + "]");
 		}
 	}	
 }

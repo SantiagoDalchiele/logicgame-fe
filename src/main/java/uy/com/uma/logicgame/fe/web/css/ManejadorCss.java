@@ -1,9 +1,13 @@
 package uy.com.uma.logicgame.fe.web.css;
 
-import java.io.FileReader;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Reader;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Locale;
 
 import javax.json.JsonObject;
 
@@ -67,10 +71,13 @@ public class ManejadorCss {
 	 */
 	public static Collection<PropCss> loadCss (String pathCssFile) {		
 		Collection<PropCss> col = new ArrayList<PropCss>();
+		final Locale LOCALE = Locale.getDefault();
+		final Charset CHARSET = Charset.defaultCharset();
 		
 		if (pathCssFile != null) {
 			try {			
-				Reader r = new FileReader(pathCssFile);
+				InputStream in = new FileInputStream(pathCssFile);
+			    Reader r = new InputStreamReader(in, CHARSET);
 				InputSource is = new InputSource(r);
 		        CSSOMParser parser = new CSSOMParser();
 		        CSSStyleSheet hoja = parser.parseStyleSheet(is, null, null);            
@@ -88,7 +95,7 @@ public class ManejadorCss {
 		                    for (int h = 0; h < dec.getLength(); h++) {
 		                        String propiedad = dec.item(h);                           
 		                        String valor = dec.getPropertyValue (propiedad);
-		                        String regla = sels[j].trim().toLowerCase();                        
+		                        String regla = sels[j].trim().toLowerCase(LOCALE);                        
 		                        col.add(new PropCss(regla, propiedad, valor));
 		                    }
 		                }
